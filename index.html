@@ -1,1 +1,1002 @@
-Coming Soon
+<!DOCTYPE html>
+<html lang="or">
+  <head>
+    <meta name="google-site-verification" content="PwQ6-C2NiW61Ed7LdkchITSrVzVEzHCc2At8VvyuO5Y" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sandeep Biswal G</title>
+
+    <!-- SEO Meta Tags -->
+    <meta
+      name="description"
+      content="Sandeep Biswal G is bridging the language gap in the digital world. My mission is singular: to design seamless, accessible digital experiences that bring the Odia language forward in technology. I am focused on empowering the people of Odisha by offering native-language solutions."
+    />
+    <meta
+      name="keywords"
+      content="Sandeep Biswal G, Ganita Bingya, UI/UX Designer, Odia Language, Dhenkanal, Odisha, India"
+    />
+    <meta name="author" content="Sandeep Biswal G" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://imsbg.github.io/" />
+    <meta
+      property="og:title"
+      content="Sandeep Biswal G"
+    />
+    <meta
+      property="og:description"
+      content="Sandeep Biswal G is bridging the language gap in the digital world. My mission is singular: to design seamless, accessible digital experiences that bring the Odia language forward in technology. I am focused on empowering the people of Odisha by offering native-language solutions."
+    />
+    <meta
+      property="og:image"
+      content="https://imsbg.github.io/images/sandeep-biswal-g/sandeep.jpg"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://imsbg.github.io/" />
+    <meta
+      property="twitter:title"
+      content="Sandeep Biswal G"
+    />
+    <meta
+      property="twitter:description"
+      content="Sandeep Biswal G is bridging the language gap in the digital world. My mission is singular: to design seamless, accessible digital experiences that bring the Odia language forward in technology. I am focused on empowering the people of Odisha by offering native-language solutions."
+    />
+    <meta
+      property="twitter:image"
+      content="https://imsbg.github.io/images/sandeep-biswal-g/sandeep.jpg"
+    />
+
+    <style>
+      /* CSS (Styling) */
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Oriya:wght@400;500;600;700&display=swap");
+
+      :root {
+        --bg-color: #f8f9fa;
+        --card-bg-color: #ffffff;
+        --text-color: #111827;
+        --subtle-text-color: #6b7280;
+        --border-color: #e5e7eb;
+        --primary-button-bg: #111827;
+        --primary-button-text: #ffffff;
+        --accent-color-available: #10b981;
+        --accent-bg-available: #d1fae5;
+      }
+
+      /* Basic Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Inter", "Noto Sans Oriya", sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        line-height: 1.6;
+        padding-top: 100px;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      /* Glassmorphism Header */
+      .main-header {
+        position: fixed;
+        top: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        max-width: 840px;
+        padding: 0 20px;
+        z-index: 1000;
+      }
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 25px;
+        background-color: rgba(
+          255,
+          255,
+          255,
+          0.7
+        ); /* Semi-transparent background */
+        -webkit-backdrop-filter: blur(12px); /* Blur for Safari */
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(229, 231, 235, 0.5); /* Lighter, semi-transparent border */
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+      }
+      .nav-left,
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .nav-icons {
+        display: flex;
+        gap: 5px;
+      }
+      .nav-icons a,
+      .nav-icons button {
+        position: relative; /* Added for active indicator */
+        color: var(--subtle-text-color);
+        padding: 8px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.2s;
+        cursor: pointer;
+        border: none;
+        background: 0 0;
+      }
+      .nav-icons a:hover,
+      .nav-icons button:hover {
+        background-color: rgba(243, 244, 246, 0.7);
+      }
+      /* Style for the active navigation indicator dot */
+      .nav-icons a.active-nav::after,
+      .nav-icons button.active-nav::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 6px;
+        height: 6px;
+        background-color: var(--text-color);
+        border-radius: 50%;
+      }
+      .nav-icons svg {
+        width: 22px;
+        height: 22px;
+      }
+      .language-switcher {
+        background-color: var(--primary-button-bg);
+        color: var(--primary-button-text);
+        border: none;
+        padding: 10px 18px;
+        border-radius: 999px;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 14px;
+        transition: opacity 0.2s;
+        margin-left: 10px;
+      }
+      .language-switcher:hover {
+        opacity: 0.85;
+      }
+
+      /* Menu Modal */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(248, 249, 250, 0.8);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        z-index: 2000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s;
+        padding: 20px;
+        overflow-y: auto;
+      }
+      .modal-overlay.show {
+        opacity: 1;
+        visibility: visible;
+      }
+      .close-modal-btn {
+        position: fixed;
+        top: 30px;
+        right: 40px;
+        background: 0 0;
+        border: none;
+        cursor: pointer;
+        font-size: 2.5rem;
+        color: var(--text-color);
+        z-index: 2001;
+      }
+      .menu-links {
+        list-style: none;
+        text-align: center;
+      }
+      .menu-links li a {
+        font-size: 2rem;
+        font-weight: 600;
+        color: var(--text-color);
+        text-decoration: none;
+        padding: 15px 0;
+        display: block;
+        transition: color 0.2s;
+      }
+      .menu-links li a:hover {
+        color: var(--subtle-text-color);
+      }
+
+      /* Page Switching & Content */
+      .page-content {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.4s ease-in-out;
+      }
+      .page-content.active {
+        display: block;
+        opacity: 1;
+      }
+      .profile-page {
+        text-align: center;
+      }
+      .profile-avatar {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin: 20px auto;
+        border: 4px solid var(--card-bg-color);
+        box-shadow: 0 0 0 2px var(--border-color);
+      }
+      .profile-page h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+      .profile-bio {
+        font-size: 1.1rem;
+        color: var(--subtle-text-color);
+        max-width: 600px;
+        margin: 0 auto 40px auto;
+      }
+      .profile-page h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+        margin-top: 40px;
+      }
+      .interest-tags {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 40px;
+      }
+      .interest-tag {
+        background-color: #f3f4f6;
+        color: #4b5563;
+        padding: 8px 16px;
+        border-radius: 999px;
+        font-weight: 500;
+        font-size: 0.9rem;
+        border: 1px solid var(--border-color);
+      }
+
+      /* General Sections & Cards */
+      .section {
+        background-color: var(--card-bg-color);
+        border: 1px solid var(--border-color);
+        border-radius: 16px;
+        padding: 30px;
+        margin-bottom: 25px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      }
+      .section-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 25px;
+      }
+      .section-dot {
+        width: 8px;
+        height: 8px;
+        background-color: var(--text-color);
+        border-radius: 50%;
+        margin-right: 12px;
+      }
+      .section-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+      }
+      .view-all-link {
+        margin-left: auto;
+        color: var(--subtle-text-color);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        transition: color 0.2s;
+        cursor: pointer;
+      }
+      .view-all-link:hover {
+        color: var(--text-color);
+      }
+
+      /* Hero Section */
+      .hero-section {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 30px;
+      }
+      .hero-text {
+        flex: 1;
+      }
+      .hero-text .role {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 15px;
+      }
+      .role-title {
+        color: rgb(11, 56, 201);
+        font-weight: 600;
+        font-size: 1rem;
+      }
+      .available-tag {
+        background-color: #d5c940;
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 4px 10px;
+        border-radius: 999px;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .available-tag::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        background-color: var(--accent-color-available);
+        border-radius: 50%;
+      }
+      .hero-text h1 {
+        font-size: 2.8rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        line-height: 1.2;
+      }
+      .hero-text .subtitle {
+        font-size: 1.1rem;
+        color: var(--subtle-text-color);
+        margin-bottom: 25px;
+      }
+      .hero-avatar img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid var(--card-bg-color);
+        box-shadow: 0 0 0 2px var(--border-color);
+      }
+
+      /* Buttons */
+      .hero-buttons,
+      .cta-buttons {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .btn {
+        padding: 12px 20px;
+        border-radius: 999px;
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        border: 1px solid transparent;
+        transition: all 0.2s ease-in-out;
+      }
+      .btn:hover {
+        transform: scale(1.03) translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+      }
+      .btn-primary {
+        background-color: var(--primary-button-bg);
+        color: var(--primary-button-text);
+      }
+      .btn-primary:hover {
+        opacity: 0.9;
+      }
+      .btn-secondary {
+        background-color: var(--card-bg-color);
+        color: var(--text-color);
+        border: 1px solid var(--border-color);
+      }
+      .btn-secondary:hover {
+        border-color: #d1d5db;
+      }
+      .btn svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      /* Projects Page / Grid */
+      .projects-page-header {
+        text-align: left;
+        margin-bottom: 30px;
+      }
+      .projects-page-header h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+      }
+      .projects-page-header p {
+        font-size: 1.1rem;
+        color: var(--subtle-text-color);
+        max-width: 600px;
+      }
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+      }
+      .project-list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+      .project-card {
+        display: flex;
+        align-items: center;
+        padding: 20px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        text-decoration: none;
+        color: var(--text-color);
+        transition: all 0.2s ease-in-out;
+      }
+      .project-card:hover {
+        border-color: #9ca3af;
+        transform: translateY(-4px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.07);
+      }
+
+      /* UPDATED CSS FOR PROJECT LOGO */
+      .project-logo {
+        width: 50px;
+        height: 50px;
+        margin-right: 20px;
+        flex-shrink: 0;
+      }
+      .project-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-radius: 10px;
+      }
+
+      .project-info h3 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 2px;
+      }
+      .project-info p {
+        color: var(--subtle-text-color);
+        font-size: 0.9rem;
+      }
+      .project-card-arrow {
+        margin-left: auto;
+        color: var(--subtle-text-color);
+        transition: transform 0.2s;
+      }
+      .project-card:hover .project-card-arrow {
+        transform: translateX(3px);
+      }
+
+      /* CTA & Social */
+      .cta-section {
+        text-align: center;
+      }
+      .cta-section h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+      .cta-section p {
+        font-size: 1.1rem;
+        color: var(--subtle-text-color);
+        margin-bottom: 30px;
+        max-width: 450px;
+        margin: 0 auto 30px auto;
+      }
+      .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+      }
+      .social-link {
+        width: 44px;
+        height: 44px;
+        border: 1px solid var(--border-color);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--subtle-text-color);
+        transition: all 0.2s ease-in-out;
+      }
+      .social-link:hover {
+        color: var(--text-color);
+        border-color: #9ca3af;
+        transform: translateY(-2px);
+        background-color: #f9fafb;
+      }
+      .social-link svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      /* Footer & Responsive */
+      footer {
+        text-align: center;
+        padding: 30px 20px;
+        font-size: 0.9rem;
+        color: var(--subtle-text-color);
+      }
+      footer a {
+        color: var(--text-color);
+        text-decoration: none;
+        font-weight: 500;
+      }
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      /* Floating Share Button Style */
+      #floating-share-btn {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        width: 56px;
+        height: 56px;
+        background-color: var(--primary-button-bg);
+        color: var(--primary-button-text);
+        border: none;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        cursor: pointer;
+        z-index: 999;
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+      }
+      #floating-share-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+      }
+      #floating-share-btn svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      @media (max-width: 768px) {
+        .hero-section {
+          flex-direction: column-reverse;
+          text-align: center;
+        }
+        .hero-text .role,
+        .hero-buttons,
+        .cta-buttons {
+          justify-content: center;
+        }
+        .hero-avatar img {
+          width: 120px;
+          height: 120px;
+        }
+        .hero-text h1,
+        .profile-page h2,
+        .projects-page-header h2 {
+          font-size: 2.2rem;
+        }
+        .cta-section h2 {
+          font-size: 2rem;
+        }
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="main-header">
+      <div class="header-content">
+        <div class="nav-left">
+          <div class="nav-icons">
+            <a href="http://127.0.0.1:3000/demoss/sbg/sbg.html?od#ଘର" id="home-nav-btn" title="Home"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
+                /></svg
+            ></a>
+            <button id="profile-btn" title="Profile">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+                />
+              </svg>
+            </button>
+            <button id="projects-nav-btn" title="Projects">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="nav-right">
+          <div class="nav-icons">
+            <button id="menu-btn" title="Menu">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                />
+              </svg>
+            </button>
+          </div>
+          <button
+            id="language-switcher"
+            class="language-switcher"
+            data-lang-en="ଓଡ଼ିଆ"
+            data-lang-or="English"
+          >
+            English
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Menu Modal -->
+    <div id="menu-overlay" class="modal-overlay"></div>
+
+    <div class="container">
+      <main>
+        <!-- Page Contents -->
+        <div id="home-content" class="page-content active"></div>
+        <div id="profile-content" class="page-content"></div>
+        <div id="projects-content" class="page-content"></div>
+      </main>
+      <footer>
+        <p>
+          &copy; <span id="current-year"></span> Sandeep Biswal G. All Rights
+          Reserved.
+        </p>
+      </footer>
+    </div>
+
+    <!-- Floating Share Button -->
+    <button id="floating-share-btn" title="Share Page">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.186 2.25 2.25 0 0 0-3.933 2.186Z" />
+        </svg>
+    </button>
+
+
+    <!-- Instagram's official embed script. Must be loaded for the embed to work. -->
+    <script async src="//www.instagram.com/embed.js"></script>
+
+    <script>
+      const myEmail = "message.sbg@gmail.com";
+
+      // --- PROJECT DATA ---
+      const projectsData = [
+        {
+          name_en: "Ganita Bingya",
+          name_or: "ଗଣିତ ବିଜ୍ଞ",
+          desc_en: "Lerning app for kids",
+          desc_or: "ଶିଶୁମାନଙ୍କ ପାଇଁ ଶିକ୍ଷା ଆପ୍",
+          link: "https://imsbg.github.io/Ganita-Bingya-App/",
+          imageUrl: "https://imsbg.github.io/Ganita-Bingya-App/images/logo.png",
+        },
+        {
+          name_en: "Atomic Guru",
+          name_or: "ଆଟମିକ୍ ଗୁରୁ",
+          desc_en: "interactive Periodic Table learning app",
+          desc_or: "ଇଣ୍ଟରାକ୍ଟିଭ୍ ପିରିଓଡିକ୍ ଟେବୁଲ୍ ଶିକ୍ଷା ଆପ୍",
+          link: "https://imsbg.github.io/Atomic-Guru/",
+          imageUrl: "https://imsbg.github.io/Atomic-Guru//images/logo.png",
+        },
+        {
+          name_en: "SB Video Call",
+          name_or: "ଏସ୍‌ବି ଭିଡିଓ କଲ୍",
+          desc_en: "Peer-to-Peer Video Call Web App",
+          desc_or: "ଭିଡିଓ କଲ ୱେବ୍ ଆପ୍",
+          link: "https://imsbg.github.io/SBCALL/od/",
+          imageUrl: "https://imsbg.github.io/SBCALL/sbg/sbg.ico",
+        },
+        {
+          name_en: "Odia Games",
+          name_or: "ଓଡ଼ିଆ ଖେଳ",
+          desc_en: "Online Odia Game",
+          desc_or: "ଅନଲାଇନ୍ ଓଡ଼ିଆ ଖେଳ",
+          link: "https://odiagames.netlify.app/?lang=odia",
+          imageUrl: "https://imsbg.github.io/odiagames/favicon.ico",
+        },
+        {
+          name_en: "SB SSTV Encoder",
+          name_or: "ଏସ୍‌ବି SSTV ଏନକୋଡର୍",
+          desc_en: "Convert image to SSTV Signal",
+          desc_or: "ଛବିକୁ SSTV ସିଗ୍ନାଲ୍‌ରେ ପରିବର୍ତ୍ତନ କରନ୍ତୁ",
+          link: "https://imsbg.github.io/SBSSTV/",
+          imageUrl: "https://imsbg.github.io/SBSSTV/sg%20sstv.png",
+        },
+        {
+          name_en: "SB Texto",
+          name_or: "ଏସ୍‌ବି ଟେକ୍ସ୍ଟୋ",
+          desc_en: "Birala Sandesha",
+          desc_or: "ବିରଳ ସନ୍ଦେଶ",
+          link: "https://imsbg.github.io/SBTEXTO/?od",
+          imageUrl: "https://imsbg.github.io/SBTEXTO/logo.png",
+        },
+      ];
+
+      // --- HTML GENERATORS ---
+      function generateProjectHTML(projects) {
+        return projects
+          .map(
+            (project) => `
+                <a href="${project.link}" target="_blank" rel="noopener noreferrer" class="project-card">
+                    <div class="project-logo"><img src="${project.imageUrl}" alt="Logo for ${project.name_en} project" width="50" height="50" loading="lazy"></div>
+                    <div class="project-info">
+                        <h3 data-lang-en="${project.name_en}" data-lang-or="${project.name_or}">${project.name_or}</h3>
+                        <p data-lang-en="${project.desc_en}" data-lang-or="${project.desc_or}">${project.desc_or}</p>
+                    </div>
+                    <span class="project-card-arrow">&rarr;</span>
+                </a>`
+          )
+          .join("");
+      }
+
+      const allProjectsHTML = generateProjectHTML(projectsData);
+      const homeProjectsHTML = generateProjectHTML(projectsData.slice(0, 3));
+
+      const socialLinksHTML = `
+            <div class="social-links" style="margin-top: 25px;">
+                <a href="https://youtube.com/@SandeepBIswalG" class="social-link" aria-label="YouTube"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M21.582,6.186c-0.23-0.86-0.908-1.538-1.768-1.768C18.25,4,12,4,12,4S5.75,4,4.186,4.418 c-0.86,0.23-1.538,0.908-1.768,1.768C2,7.75,2,12,2,12s0,4.25,0.418,5.814c0.23,0.86,0.908,1.538,1.768,1.768 C5.75,20,12,20,12,20s6.25,0,7.814-0.418c0.861-0.23,1.538-0.908,1.768-1.768C22,16.25,22,12,22,12S22,7.75,21.582,6.186z M10,15.464V8.536L16,12L10,15.464z"/></svg></a>
+                <a href="https://x.com/sandeepbiswalg" class="social-link" aria-label="X / Twitter"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                <a href="https://www.instagram.com/sandeepbiswalg" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.584.069-4.85c.149-3.225 1.664-4.771 4.919-4.919C8.418 2.175 8.79 2.163 12 2.163m0-2.163C8.74.001 8.333.012 7.053.072 2.695.272.273 2.69.073 7.052.013 8.333 0 8.74 0 12s.013 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98C8.333 23.988 8.74 24 12 24s3.667-.013 4.947-.072c4.354-.2 6.782-2.618 6.979-6.98.06-1.28.073-1.687.073-4.947s-.013-3.667-.072-4.947C21.728 2.69 19.306.273 14.947.073 13.667.013 13.26 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg></a>
+                <a href="https://github.com/imsbg" class="social-link" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2A10,10,0,0,0,2,12c0,4.42,2.87,8.17,6.84,9.5.5.09.68-.22.68-.48s0-.85,0-1.65c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61,1,.07,1.53,1.03,1.53,1.03.89,1.53,2.34,1.09,2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95,0-1.1.39-2,1.03-2.7-.1-.25-.45-1.28.1-2.67,0,0,.84-.27,2.75,1.02A9.56,9.56,0,0,1,12,6.84c.85,0,1.7.11,2.5.33,1.91-1.29,2.75-1.02,2.75-1.02.55,1.39.2,2.42.1,2.67.64.7,1.03,1.6,1.03,2.7,0,3.85-2.34,4.7-4.57,4.95.36.31.68.92.68,1.85,0,1.34,0,2.42,0,2.75,0,.27.18.58.69.48A10,10,0,0,0,22,12C22,6.48,17.52,2,12,2Z"/></svg></a>
+            </div>`;
+
+      // --- PAGE & MODAL POPULATION ---
+      function populateContent() {
+        // Home Page
+        document.getElementById("home-content").innerHTML = `
+                <section class="section"> <div class="hero-section"><div class="hero-text"><div class="role"><span class="role-dot"></span><span class="role-title" data-lang-en="Odisha" data-lang-or="ଓଡ଼ିଶା"></span></div><h1 data-lang-en="I'm Sandeep Biswal G" data-lang-or="ମୁଁ ସନ୍ଦୀପ୍ ବିଶ୍ଵାଳ ଜି"></h1><p class="subtitle" data-lang-en="Jay Jagannath" data-lang-or="ଜୟ ଜଗନ୍ନାଥ"></p><div class="hero-buttons"><a href="mailto:${myEmail}" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" /></svg><span data-lang-en="Mail Me" data-lang-or="ମେଲ୍ କରନ୍ତୁ"></span></a><button id="copy-email-btn" class="btn btn-secondary"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75" /></svg><span data-lang-en="Copy Email" data-lang-or="ଇମେଲ୍ କପି କରନ୍ତୁ"></span></button></div></div><div class="hero-avatar"><img src="https://imsbg.github.io/images/sandeep-biswal-g/sandeep.jpg" alt="Sandeep Biswal G"></div></div> </section>
+                <section class="section"> <div class="section-header"><span class="section-dot"></span><h2 class="section-title" data-lang-en="Projects" data-lang-or="ପ୍ରୋଜେକ୍ଟସ୍"></h2><div id="view-all-projects-btn" class="view-all-link"><span data-lang-en="View All" data-lang-or="ସବୁ ଦେଖନ୍ତୁ"></span> &rarr;</div></div><div class="project-list">${homeProjectsHTML}</div> </section>
+                <section class="section cta-section"><h2 data-lang-en="Let's work together." data-lang-or="ଆସନ୍ତୁ ଏକାଠି କାମ କରିବା"></h2><p data-lang-en="lets create something for odisha in odia language." data-lang-or="ଆସନ୍ତୁ ଓଡ଼ିଶା ପାଇଁ ଓଡ଼ିଆ ଭାଷାରେ କିଛି ତିଆରି କରିବା"></p><div class="cta-buttons"><a href="mailto:${myEmail}" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" /></svg><span data-lang-en="Mail Me" data-lang-or="ମେଲ୍ କରନ୍ତୁ"></span></a><button id="copy-email-btn-2" class="btn btn-secondary"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75" /></svg><span data-lang-en="Copy Email" data-lang-or="ଇମେଲ୍ କପି କରନ୍ତୁ"></span></button></div></section>
+                <section class="section"><div class="section-header" style="justify-content:center; margin-bottom: 0;"><span class="section-dot"></span><h2 class="section-title" data-lang-en="Follow Me" data-lang-or="ମୋତେ ଅନୁସରଣ କରନ୍ତୁ"></h2></div> ${socialLinksHTML} </section>`;
+
+        // Profile Page
+        document.getElementById("profile-content").innerHTML = `<section class="section profile-page">
+            <img src="https://imsbg.github.io/images/sandeep-biswal-g/sandeep.jpg" alt="Sandeep Biswal G" class="profile-avatar">
+            <h2 data-lang-en="About Me" data-lang-or="ମୋ ବିଷୟରେ"></h2>
+            <p class="profile-bio" data-lang-en="Jay Jagannatha! I'm Sandeep Biswal, a guy from Odisha. I really love technology. Exploring new places, experiencing nature, and learning about the digital world are my passions. My one and only goal is to bring our Odia language forward in technology. I want our people to be able to use all digital things easily in their own language.<br><i>Glory to thee, Mother Utkala</i>" data-lang-or="ଜୟ ଜଗନ୍ନାଥ, ମୁଁ, <b>ସନ୍ଦୀପ୍ ବିଶ୍ଵାଳ</b> ଆଉ ମୁଁ ଓଡ଼ିଶାର ପିଲା । ଟେକ୍ନୋଲୋଜି ମୋତେ ଭାରି ଭଲ ଲାଗେ । ନୂଆ ନୂଆ ଜାଗା ବୁଲିବା, ପ୍ରକୃତିକୁ ଦେଖିବା ଆଉ ଡିଜିଟାଲ ଦୁନିଆ ବିଷୟରେ ଜାଣିବା ମୋର ସଉକ । ମୋର ଗୋଟିଏ ହିଁ ଲକ୍ଷ୍ୟ, ଟେକ୍ନୋଲୋଜିରେ ଆମ ଓଡ଼ିଆ ଭାଷାକୁ ଆଗକୁ ନେବା । ମୁଁ ଚାହେଁ ଯେମିତି ଆମ ଲୋକମାନେ ସବୁ ଡିଜିଟାଲ୍ ଜିନିଷକୁ ସହଜରେ ନିଜ ଭାଷାରେ ବ୍ୟବହାର କରନ୍ତୁ । <br><i>ବନ୍ଦେ ଉତ୍କଳ ଜନନୀ</i>"></p>
+            <h3 data-lang-en="Interests" data-lang-or="ଆଗ୍ରହ"></h3>
+            <div class="interest-tags"><span class="interest-tag">Photography</span><span class="interest-tag">Traveling</span><span class="interest-tag">Tech Gadgets</span></div>
+            <h3 data-lang-en="Follow Me on Social Media" data-lang-or="ସୋସିଆଲ ମିଡିଆରେ ମୋତେ ଅନୁସରଣ କରନ୍ତୁ"></h3>
+            ${socialLinksHTML}
+            <!-- INSTAGRAM EMBED SECTION -->
+            <div style="text-align: left; margin-top: 40px; padding-top: 40px; border-top: 1px solid var(--border-color);">
+                <div class="section-header" style="margin-bottom: 15px;">
+                    <span class="section-dot"></span>
+                    <h2 class="section-title" data-lang-en="Lifestyle" data-lang-or="ଜୀବନଶୈଳୀ"></h2>
+                </div>
+                <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/sandeepbiswalg/" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px auto; max-width:540px; min-width:326px; padding:0; width:99.375%;"></blockquote>
+            </div>
+        </section>`;
+
+        // Projects Page
+        document.getElementById("projects-content").innerHTML = `
+                <section class="section">
+                    <div class="projects-page-header">
+                         <h2 data-lang-en="My Works" data-lang-or="ମୋର କାର୍ଯ୍ୟଗୁଡ଼ିକ"></h2>
+                         <p data-lang-en="" data-lang-or=""></p>
+                    </div>
+                    <div class="projects-grid">${allProjectsHTML}</div>
+                </section>`;
+
+        // Menu Modal
+        document.getElementById("menu-overlay").innerHTML = `<button id="close-menu-btn" class="close-modal-btn" title="Close Menu">&times;</button><ul class="menu-links"><li><a href="https://imsbg.github.io/?od#ଘର" data-lang-en="Home" data-lang-or="ହୋମ୍"></a></li><li><a href="https://imsbg.github.io/?od#about" data-lang-en="About" data-lang-or="ମୋ ବିଷୟରେ"></a></li><li><a href="https://imsbg.github.io/Ganita-Bingya-App/" data-lang-en="Ganita Bingya" data-lang-or="ଗଣିତ ବିଜ୍ଞ"></a></li><li><a href="https://www.instagram.com/sandeepbiswalg" data-lang-en="Follow Me" data-lang-or="ମୋତେ ଅନୁସରଣ କରନ୍ତୁ
+"></a></li><li><a href="mailto:message.sbg@gmail.com" data-lang-en="Contact" data-lang-or="ଯୋଗାଯୋଗ"></a></li></ul>`;
+      }
+
+      // --- SCRIPT INITIALIZATION ---
+      document.addEventListener("DOMContentLoaded", () => {
+        populateContent();
+
+        // --- DOM ELEMENT REFERENCES ---
+        const homeNavBtn = document.getElementById("home-nav-btn");
+        const profileNavBtn = document.getElementById("profile-btn");
+        const projectsNavBtn = document.getElementById("projects-nav-btn");
+        const homeContent = document.getElementById("home-content");
+        const profileContent = document.getElementById("profile-content");
+        const projectsContent = document.getElementById("projects-content");
+        const menuBtn = document.getElementById("menu-btn");
+        const menuOverlay = document.getElementById("menu-overlay");
+        const closeMenuBtn = document.getElementById("close-menu-btn");
+        const viewAllProjectsBtn = document.getElementById("view-all-projects-btn");
+        const langSwitcher = document.getElementById("language-switcher");
+        const shareBtn = document.getElementById('floating-share-btn');
+
+        const allPages = [homeContent, profileContent, projectsContent];
+        const allNavBtns = [homeNavBtn, profileNavBtn, projectsNavBtn];
+        let currentLanguage = "or"; 
+
+        // --- LANGUAGE HANDLING ---
+        const setLanguage = (lang, isInitialLoad = false) => {
+            currentLanguage = lang;
+            document.documentElement.lang = currentLanguage;
+            document.querySelectorAll("[data-lang-en]").forEach((el) => {
+                const text = currentLanguage === "en" ? el.dataset.langEn : el.dataset.langOr;
+                if(text) el.innerHTML = text;
+            });
+            langSwitcher.innerText = currentLanguage === "en" ? langSwitcher.dataset.langEn : langSwitcher.dataset.langOr;
+            
+            if (!isInitialLoad) {
+                const url = new URL(window.location);
+                url.search = '?' + (lang === 'en' ? 'en' : 'od');
+                window.history.replaceState({ lang }, '', url.href);
+            }
+
+            // Re-process Instagram embed if it exists, as its container might re-render
+            if (window.instgrm) {
+                window.instgrm.Embeds.process();
+            }
+        };
+
+        const checkUrlForLanguage = () => {
+            const search = window.location.search;
+            if (search === '?en') {
+                setLanguage('en', true);
+            } else {
+                setLanguage('or', true); // Default to Odia
+            }
+        };
+        
+        // --- PAGE NAVIGATION ---
+        const setActivePage = (activePage, isInitialLoad = false) => {
+          allPages.forEach((page) => page.classList.remove("active"));
+          activePage.classList.add("active");
+          
+          if(!isInitialLoad) window.scrollTo(0, 0);
+
+          const activeIndex = allPages.indexOf(activePage);
+          allNavBtns.forEach(btn => btn.classList.remove('active-nav'));
+          if (activeIndex !== -1) {
+            allNavBtns[activeIndex].classList.add('active-nav');
+          }
+          
+          if (!isInitialLoad) {
+                let newHash = '#ଘର';
+                if (activePage.id === 'profile-content') newHash = '#about';
+                if (activePage.id === 'projects-content') newHash = '#projects';
+                
+                if (window.location.hash !== newHash) {
+                   window.history.pushState({ page: newHash }, '', newHash);
+                }
+            }
+        };
+
+        const checkUrlForHash = () => {
+            const hash = window.location.hash;
+            switch (hash) {
+                case '#about':
+                    setActivePage(profileContent, true);
+                    break;
+                case '#projects':
+                    setActivePage(projectsContent, true);
+                    break;
+                case '#ଘର':
+                default:
+                    setActivePage(homeContent, true);
+                    break;
+            }
+        };
+        
+        homeNavBtn.classList.add('active-nav'); // Set initial active state
+
+        // --- EVENT LISTENERS ---
+        homeNavBtn.addEventListener("click", (e) => { e.preventDefault(); setActivePage(homeContent); });
+        profileNavBtn.addEventListener("click", () => setActivePage(profileContent));
+        projectsNavBtn.addEventListener("click", () => setActivePage(projectsContent));
+        viewAllProjectsBtn.addEventListener("click", () => projectsNavBtn.click());
+        menuBtn.addEventListener("click", () => menuOverlay.classList.add("show"));
+        closeMenuBtn.addEventListener("click", () => menuOverlay.classList.remove("show"));
+        langSwitcher.addEventListener("click", () => setLanguage(currentLanguage === 'or' ? 'en' : 'or'));
+
+        if (shareBtn) {
+            shareBtn.addEventListener('click', async () => {
+                const shareData = {
+                    title: document.title,
+                    text: "Check out Sandeep Biswal G's portfolio!",
+                    url: window.location.href,
+                };
+                try {
+                    if (navigator.share) {
+                        await navigator.share(shareData);
+                    } else {
+                        await navigator.clipboard.writeText(shareData.url);
+                        alert('Link copied to clipboard!');
+                    }
+                } catch (err) {
+                    console.error('Share failed:', err);
+                }
+            });
+        }
+        
+        window.addEventListener('popstate', (event) => {
+            checkUrlForHash();
+        });
+
+
+        const copyEmail = (buttonId) => {
+          const copyBtn = document.getElementById(buttonId);
+          const originalText = copyBtn.querySelector("span").dataset[currentLanguage === 'en' ? 'langEn' : 'langOr'];
+          navigator.clipboard.writeText(myEmail).then(() => {
+              copyBtn.querySelector("span").innerText = currentLanguage === "en" ? "Copied!" : "କପି ହେଲା!";
+              setTimeout(() => {
+                copyBtn.querySelector("span").innerText = originalText;
+              }, 2000);
+            }).catch((err) => console.error("Failed to copy email: ", err));
+        };
+        document.getElementById("copy-email-btn").addEventListener("click", () => copyEmail("copy-email-btn"));
+        document.getElementById("copy-email-btn-2").addEventListener("click", () => copyEmail("copy-email-btn-2"));
+
+        // --- INITIALIZE ---
+        checkUrlForLanguage();
+        checkUrlForHash();
+        document.getElementById("current-year").textContent = new Date().getFullYear();
+      });
+    </script>
+  </body>
+</html>
