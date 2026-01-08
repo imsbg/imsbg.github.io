@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odia Book JSON Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Oriya:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6200EE;
+            --secondary-color: #03dac6;
+            --background-color: #f4f5f7;
+            --surface-color: #ffffff;
+            --on-surface-color: #333;
+            --border-color: #e0e0e0;
+            --error-color: #b00020;
+            --info-color: #1976d2;
+            --warning-color: #ff9800;
+            --success-color: #00c853;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Noto Sans Oriya', sans-serif;
+            background-color: var(--background-color);
+            color: var(--on-surface-color);
+            line-height: 1.6;
+            padding: 20px;
+            position: relative; 
+        }
+        .main-container {
+            display: flex;
+            gap: 30px;
+            max-width: 1600px;
+            margin: auto;
+            align-items: flex-start;
+        }
+        .input-panel { flex: 1; min-width: 50%; }
+        .preview-panel {
+            width: 420px;
+            position: sticky;
+            top: 20px;
+            height: calc(100vh - 40px);
+        }
+        .panel-card {
+            background-color: var(--surface-color);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        h1, h2 { color: var(--primary-color); text-align: center; }
+        h1 { margin-bottom: 20px; }
+        .form-group, .page-editor-wrapper { display: flex; flex-direction: column; }
+        label { margin-bottom: 8px; font-weight: 700; }
+        input, textarea {
+            width: 100%; padding: 12px; border: 1px solid var(--border-color);
+            border-radius: 8px; font-family: 'Noto Sans Oriya', sans-serif; font-size: 16px;
+        }
+        textarea { resize: vertical; }
+        #introText { min-height: 100px; }
+        .page-editor-wrapper {
+            border: 1px dashed var(--border-color); padding: 15px;
+            border-radius: 8px; margin-top: 10px;
+            position: relative; /* For drag handle positioning */
+            background-color: var(--surface-color);
+            transition: all 0.3s ease;
+        }
+        .page-editor-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .char-counter { font-size: 12px; color: #666; }
+        .page-content { min-height: 250px; }
+
+        .instructions { background-color: #eef2ff; padding: 15px; border-radius: 8px; font-size: 14px; }
+        .instructions ul { list-style-position: inside; }
+        .button-group { display: flex; gap: 15px; margin-top: 10px; flex-wrap: wrap; }
+        button {
+            flex-grow: 1; padding: 12px 20px; border: none; border-radius: 8px;
+            background-color: var(--primary-color); color: white; font-family: 'Noto Sans Oriya', sans-serif;
+            font-size: 16px; font-weight: 700; cursor: pointer; transition: background-color 0.2s, transform 0.1s;
+        }
+        button:hover { background-color: #5200c7; }
+        button:disabled { background-color: #c5c5c5; cursor: not-allowed; }
+        button.secondary { background-color: var(--secondary-color); }
+        button.secondary:hover { background-color: #02b8a6; }
+        button.info { background-color: var(--info-color); }
+        button.info:hover { background-color: #1565c0; }
+        button.warning { background-color: var(--warning-color); }
+        button.warning:hover { background-color: #f57c00; }
+
+        /* Specific styles for JSON Upload Button Drop State */
+        #uploadJsonBtn.drag-over-active {
+            background-color: var(--success-color);
+            transform: scale(1.02);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        #addPageBtn { background-color: #3f51b5; width: 100%; margin-top: 20px; }
+        
+        /* --- Reorder Styles --- */
+        .drag-handle {
+            position: absolute;
+            top: 10px; right: 10px;
+            cursor: grab;
+            font-size: 24px;
+            color: #aaa;
+            padding: 5px;
+            display: none; /* Hidden by default */
+        }
+        
+        /* REORDER MODE STYLES */
+        .reorder-mode .page-editor-wrapper {
+            border-style: solid;
+            border-color: var(--primary-color);
+            padding: 10px;
+            background: #fff;
+        }
+        .reorder-mode .drag-handle { display: block; top: 50%; transform: translateY(-50%); right: 15px; }
+        .page-editor-wrapper.dragging {
+            opacity: 0.5;
+            background: #eef2ff;
+        }
+
+        /* Hide content in reorder mode */
+        .reorder-mode .page-content, 
+        .reorder-mode .form-group, 
+        .reorder-mode .char-counter {
+            display: none;
+        }
+
+        /* Page Summary for Reorder Mode */
+        .page-summary {
+            display: none;
+            font-size: 16px;
+            color: #444;
+            margin-left: 10px;
+            font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 70%;
+        }
+        .reorder-mode .page-summary {
+            display: inline-block;
+        }
+        .reorder-mode .page-editor-header { margin-bottom: 0; }
+
+
+        /* --- FIXED PREVIEW PANEL LAYOUT --- */
+        .preview-panel .panel-card {
+            align-items: center;
+            height: 100%;
+        }
+        .phone-frame {
+            width: 100%;
+            flex-grow: 1;
+            min-height: 0;
+            border: 10px solid #2d2d2d;
+            border-radius: 40px;
+            background-color: #f9f9f9;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            display: flex;
+            padding: 10px;
+        }
+        .phone-screen {
+            flex-grow: 1;
+            background-color: #fff;
+            border-radius: 30px;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        .phone-screen.title-page-preview {
+            display: flex; flex-direction: column;
+            justify-content: center; text-align: center;
+        }
+        .phone-screen h3 { font-size: 22px; color: var(--primary-color); font-weight: 700; margin-bottom: 16px; }
+        .phone-screen p { font-size: 18px; line-height: 1.7; margin-bottom: 16px; white-space: pre-wrap; }
+        .preview-nav {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 15px; width: 100%; flex-shrink: 0;
+        }
+        .preview-nav button { padding: 8px 12px; font-size: 14px; flex: 0 1 auto; }
+        
+        /* --- JSON PREVIEW --- */
+        .json-preview-container {
+            width: 100%; height: 300px; background-color: #2d2d2d;
+            border-radius: 8px; overflow: auto; margin-top: 20px;
+        }
+        #json-output {
+            color: #f1f1f1; padding: 15px; font-family: monospace; white-space: pre;
+        }
+
+        /* --- FLOATING TOOLBAR --- */
+        #floating-toolbar {
+            position: absolute;
+            display: none;
+            background-color: #2d2d2d;
+            border-radius: 6px;
+            padding: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+        #floating-toolbar button {
+            background: none;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            font-size: 14px;
+            cursor: pointer;
+            margin: 0;
+            flex-grow: 0;
+        }
+        #floating-toolbar button:hover {
+            background-color: #444;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 1200px) {
+            .preview-panel { position: static; height: auto; width: 100%; margin: 30px auto 0; }
+            .phone-frame { min-height: 700px; }
+            .main-container { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating Toolbar -->
+    <div id="floating-toolbar">
+        <button id="tool-heading" title="Heading">H</button>
+        <button id="tool-bold" title="Bold">B</button>
+        <button id="tool-italic" title="Italic">I</button>
+    </div>
+
+    <h1>Odia Book JSON Generator</h1>
+    <div class="main-container">
+        <div class="input-panel panel-card">
+            <h2>ବହିର ବିବରଣୀ</h2>
+
+            <div class="form-group">
+                <label>ଥିବା ବହିକୁ ଏଡିଟ୍ କରନ୍ତୁ</label>
+                <input type="file" id="uploadJsonInput" accept=".json" style="display: none;">
+                <!-- Drag and Drop will target this button only -->
+                <button id="uploadJsonBtn" class="info">JSON ଅପଲୋଡ୍ କରନ୍ତୁ</button>
+            </div>
+            
+            <div class="form-group">
+                <label for="bookName">ପୁସ୍ତକର ନାମ</label>
+                <input type="text" id="bookName" placeholder="ଯଥା: କବିତାମାଳା">
+            </div>
+            <div class="form-group">
+                <label for="authorName">ଲେଖକଙ୍କ ନାମ</label>
+                <input type="text" id="authorName" placeholder="ଯଥା: ସ୍ୱଭାବକବି ଗଙ୍ଗାଧର ମେହେର">
+            </div>
+            <div class="form-group">
+                <label for="sourceName">ସୋର୍ସ</label>
+                <input type="text" id="sourceName" placeholder="ଯଥା: ଓଡ଼ିଆ ଭର୍ଚୁଆଲ୍ ଏକାଡେମୀ">
+            </div>
+            <div class="form-group">
+                <label for="coverUrl">କଭର୍ ଇମେଜ୍ URL</label>
+                <input type="text" id="coverUrl" placeholder="https://.../kabitamala.jpg">
+            </div>
+             <div class="form-group">
+                <label for="titlePageAudio">ପ୍ରଥମ ପୃଷ୍ଠା ଅଡିଓ URL (ବୈକଳ୍ପିକ)</label>
+                <input type="text" id="titlePageAudio" placeholder="https://.../page1_audio.mp3">
+            </div>
+            <div class="form-group">
+                <label for="introText">ପରିଚୟ (ବୈକଳ୍ପିକ)</label>
+                <textarea id="introText" placeholder="ଏଠାରେ ଆପଣ ପୁସ୍ତକର ପରିଚୟ ବା ଉତ୍ସର୍ଗ ଲେଖିପାରିବେ..."></textarea>
+            </div>
+             <div class="form-group">
+                <label for="tocPageAudio">ବିଷୟସୂଚୀ ପୃଷ୍ଠା ଅଡିଓ URL (ବୈକଳ୍ପିକ)</label>
+                <input type="text" id="tocPageAudio" placeholder="https://.../toc_audio.mp3">
+            </div>
+
+            <h2>ମୁଖ୍ୟ ବିଷୟବସ୍ତୁ</h2>
+            <div class="instructions">
+                 <b>ଫର୍ମାଟିଂ ନିୟମ:</b>
+                <ul>
+                    <li><code>## ହେଡିଂ</code> - ଏହାକୁ ବିଷୟସୂଚୀରେ ଯୋଡାଯିବ</li>
+                    <li><code>**ବୋଲ୍ଡ**</code> | <code>*ଇଟାଲିକ୍*</code></li>
+                    <li>ଟେକ୍ସଟ୍ ସିଲେକ୍ଟ କରି ଟୁଲ୍ ବ୍ୟବହାର କରନ୍ତୁ</li>
+                </ul>
+            </div>
+             <div class="button-group">
+                <button id="reorderBtn" class="warning">ପୃଷ୍ଠା ସଜାନ୍ତୁ</button>
+                <button id="finishReorderBtn" class="warning" style="display:none;">ସଜାଇବା ସମାପ୍ତ କରନ୍ତୁ</button>
+            </div>
+            <div id="pagesContainer"></div>
+            <button id="addPageBtn">+ ନୂଆ ପୃଷ୍ଠା ଯୋଡ଼ନ୍ତୁ</button>
+
+            <div class="button-group">
+                <button id="copyBtn">JSON କପି କରନ୍ତୁ</button>
+                <button id="downloadBtn" class="secondary">JSON ଡାଉନଲୋଡ୍ କରନ୍ତୁ</button>
+            </div>
+            <pre class="json-preview-container"><code id="json-output"></code></pre>
+        </div>
+
+        <div class="preview-panel">
+            <div class="panel-card">
+                 <h2>ଲାଇଭ୍ ପ୍ରିଭ୍ୟୁ</h2>
+                <div class="phone-frame">
+                    <div class="phone-screen" id="phoneScreen"></div>
+                </div>
+                <div class="preview-nav">
+                    <button id="prevPageBtn">← ପୂର୍ବ ପୃଷ୍ଠା</button>
+                    <span id="pageIndicator">Page 1 / 1</span>
+                    <button id="nextPageBtn">ପରବର୍ତ୍ତୀ ପୃଷ୍ଠା →</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const odiaNumerals = ['୦', '୧', '୨', '୩', '୪', '୫', '୬', '୭', '୮', '୯'];
+            
+            // Getting all elements from the DOM
+            const bookNameEl = document.getElementById('bookName');
+            const authorNameEl = document.getElementById('authorName');
+            const sourceNameEl = document.getElementById('sourceName');
+            const coverUrlEl = document.getElementById('coverUrl');
+            const titlePageAudioEl = document.getElementById('titlePageAudio');
+            const introTextEl = document.getElementById('introText');
+            const tocPageAudioEl = document.getElementById('tocPageAudio');
+            const pagesContainer = document.getElementById('pagesContainer');
+            const addPageBtn = document.getElementById('addPageBtn');
+            const phoneScreenEl = document.getElementById('phoneScreen');
+            const jsonOutputEl = document.getElementById('json-output');
+            const copyBtn = document.getElementById('copyBtn');
+            const downloadBtn = document.getElementById('downloadBtn');
+            const prevPageBtn = document.getElementById('prevPageBtn');
+            const nextPageBtn = document.getElementById('nextPageBtn');
+            const pageIndicator = document.getElementById('pageIndicator');
+            const uploadJsonBtn = document.getElementById('uploadJsonBtn');
+            const uploadJsonInput = document.getElementById('uploadJsonInput');
+            const reorderBtn = document.getElementById('reorderBtn');
+            const finishReorderBtn = document.getElementById('finishReorderBtn');
+            
+            // Toolbar elements
+            const toolbar = document.getElementById('floating-toolbar');
+            const toolBold = document.getElementById('tool-bold');
+            const toolItalic = document.getElementById('tool-italic');
+            const toolHeading = document.getElementById('tool-heading');
+
+            let allBookPages = [];
+            let currentPageIndex = 0;
+            let currentActiveTextarea = null;
+
+            const toOdia = (num) => String(num).split('').map(digit => odiaNumerals[parseInt(digit)]).join('');
+            
+            const updatePageEditorLabels = () => {
+                const wrappers = pagesContainer.querySelectorAll('.page-editor-wrapper');
+                wrappers.forEach((wrapper, index) => {
+                    const label = wrapper.querySelector('label');
+                    if(label) label.textContent = `ପୃଷ୍ଠା ${toOdia(index + 3)}`;
+                });
+            };
+            
+            const createPageEditor = (pageNumber, content = '', audioUrl = '', lyricsUrl = '') => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'page-editor-wrapper';
+                
+                const header = document.createElement('div');
+                header.className = 'page-editor-header';
+                
+                const label = document.createElement('label');
+                label.textContent = `ପୃଷ୍ଠା ${toOdia(pageNumber)}`;
+
+                // Summary span for reorder mode
+                const summarySpan = document.createElement('span');
+                summarySpan.className = 'page-summary';
+                
+                const charCounter = document.createElement('span');
+                charCounter.className = 'char-counter';
+                
+                const dragHandle = document.createElement('div');
+                dragHandle.className = 'drag-handle';
+                dragHandle.innerHTML = '&#9776;'; // Hamburger icon
+
+                header.appendChild(label);
+                header.appendChild(summarySpan);
+                header.appendChild(charCounter);
+                
+                const textarea = document.createElement('textarea');
+                textarea.className = 'page-content';
+                textarea.placeholder = 'ଏଠାରେ ଆପଣଙ୍କ ବିଷୟବସ୍ତୁ ଲେଖନ୍ତୁ...';
+                textarea.value = content;
+
+                // --- Audio Input ---
+                const audioGroup = document.createElement('div');
+                audioGroup.className = 'form-group';
+                audioGroup.style.marginTop = '15px';
+                
+                const audioLabel = document.createElement('label');
+                audioLabel.textContent = 'ଅଡିଓ URL (ବୈକଳ୍ପିକ)';
+                
+                const audioInput = document.createElement('input');
+                audioInput.type = 'text';
+                audioInput.className = 'audio-url-input';
+                audioInput.placeholder = 'https://.../audio.mp3';
+                audioInput.value = audioUrl;
+
+                audioGroup.appendChild(audioLabel);
+                audioGroup.appendChild(audioInput);
+
+                // --- Lyrics Input ---
+                const lyricsGroup = document.createElement('div');
+                lyricsGroup.className = 'form-group';
+                lyricsGroup.style.marginTop = '10px';
+
+                const lyricsLabel = document.createElement('label');
+                lyricsLabel.textContent = 'ଲିରିକ୍ସ (LRC) URL (ବୈକଳ୍ପିକ)';
+
+                const lyricsInput = document.createElement('input');
+                lyricsInput.type = 'text';
+                lyricsInput.className = 'lyrics-url-input';
+                lyricsInput.placeholder = 'https://.../song.lrc';
+                lyricsInput.value = lyricsUrl;
+
+                lyricsGroup.appendChild(lyricsLabel);
+                lyricsGroup.appendChild(lyricsInput);
+
+                wrapper.appendChild(header);
+                wrapper.appendChild(dragHandle);
+                wrapper.appendChild(textarea);
+                wrapper.appendChild(audioGroup);
+                wrapper.appendChild(lyricsGroup); 
+                pagesContainer.appendChild(wrapper);
+                
+                const updateCounter = () => {
+                    const currentLen = textarea.value.length;
+                    charCounter.textContent = `${currentLen} characters`;
+                    updateAll();
+                };
+
+                // Listeners for Toolbar and Updates
+                textarea.addEventListener('mouseup', (e) => handleTextSelection(e, textarea));
+                textarea.addEventListener('keyup', (e) => handleTextSelection(e, textarea));
+
+                textarea.addEventListener('input', updateCounter);
+                audioInput.addEventListener('input', updateAll);
+                lyricsInput.addEventListener('input', updateAll); 
+                updateCounter();
+            };
+
+            const parseMarkdownToSpans = (text) => {
+                const spans = [];
+                const regex = /(\*\*(.*?)\*\*)|(\*(.*?)\*)/g;
+                let lastIndex = 0;
+                let match;
+                while ((match = regex.exec(text)) !== null) {
+                    if (match.index > lastIndex) spans.push({ text: text.substring(lastIndex, match.index), style: 'normal' });
+                    if (match[1]) spans.push({ text: match[2], style: 'bold' });
+                    else if (match[3]) spans.push({ text: match[4], style: 'italic' });
+                    lastIndex = regex.lastIndex;
+                }
+                if (lastIndex < text.length) spans.push({ text: text.substring(lastIndex), style: 'normal' });
+                return spans;
+            };
+
+            const updateAll = () => {
+                const bookName = bookNameEl.value || "ପୁସ୍ତକର ନାମ";
+                const authorName = authorNameEl.value || "ଲେଖକଙ୍କ ନାମ";
+                const sourceName = sourceNameEl.value || "ସୋର୍ସ";
+                const introText = introTextEl.value.trim();
+                
+                allBookPages = [];
+                let tocItems = [];
+                let pageNumber = 1;
+
+                // --- Page 1: Title Page ---
+                const titlePage = { pageNumber: pageNumber++, content: [] };
+                const titlePageAudio = titlePageAudioEl.value.trim();
+                if (titlePageAudio) titlePage.audio = titlePageAudio;
+                
+                titlePage.content.push({ type: "header", text: bookName });
+                titlePage.content.push({ type: "paragraph", spans: [{ text: authorName, style: 'italic' }] });
+                titlePage.content.push({ type: "paragraph", spans: [{ text: sourceName, style: 'normal' }] });
+                if (introText) {
+                    titlePage.content.push({ type: "paragraph", spans: parseMarkdownToSpans(`\n\n${introText}`) });
+                }
+                allBookPages.push(titlePage);
+
+                // --- Collect ToC items ---
+                const contentTextareas = document.querySelectorAll('.page-content');
+                let tocCounter = 1;
+                contentTextareas.forEach(textarea => {
+                    textarea.value.split('\n').forEach(line => {
+                        if (line.trim().startsWith('## ')) {
+                            const headingText = line.trim().substring(3);
+                            tocItems.push({ type: 'paragraph', spans: [{ text: `${toOdia(tocCounter++)}. ${headingText}`, style: 'normal' }] });
+                        }
+                    });
+                });
+
+                // --- Page 2: ToC Page ---
+                const tocPage = { pageNumber: pageNumber++, content: [] };
+                const tocPageAudio = tocPageAudioEl.value.trim();
+                if (tocPageAudio) tocPage.audio = tocPageAudio;
+                
+                tocPage.content.push({ type: "header", text: "ବିଷୟସୂଚୀ" });
+                if(tocItems.length > 0) tocPage.content.push(...tocItems);
+                allBookPages.push(tocPage);
+
+                // --- Main Content Pages ---
+                document.querySelectorAll('.page-editor-wrapper').forEach(wrapper => {
+                    const textarea = wrapper.querySelector('.page-content');
+                    const audioInput = wrapper.querySelector('.audio-url-input');
+                    const lyricsInput = wrapper.querySelector('.lyrics-url-input'); 
+                    
+                    const mainContent = textarea.value;
+                    if (mainContent.trim() === '') return;
+                    
+                    const contentBlocks = mainContent.split(/\n\s*\n/);
+                    const pageContent = [];
+                    contentBlocks.forEach(block => {
+                        const trimmedBlock = block.trim();
+                        if (trimmedBlock.startsWith('## ')) {
+                            pageContent.push({ type: 'header', text: trimmedBlock.substring(3) });
+                        } else if (trimmedBlock) {
+                            pageContent.push({ type: 'paragraph', spans: parseMarkdownToSpans(trimmedBlock) });
+                        }
+                    });
+                    if (pageContent.length > 0) {
+                        const newPage = { pageNumber: pageNumber++, content: pageContent };
+                        
+                        // Add Audio
+                        const audioUrl = audioInput.value.trim();
+                        if (audioUrl) newPage.audio = audioUrl;
+
+                        // Add Lyrics
+                        const lyricsUrl = lyricsInput.value.trim();
+                        if (lyricsUrl) newPage.lyrics = lyricsUrl;
+
+                        allBookPages.push(newPage);
+                    }
+                });
+
+                // --- Generate Final JSON ---
+                const generatedJson = {
+                    title: bookNameEl.value, author: authorNameEl.value, source: sourceNameEl.value,
+                    coverpage: coverUrlEl.value, pages: allBookPages
+                };
+                jsonOutputEl.textContent = JSON.stringify(generatedJson, null, 2);
+
+                renderPreview();
+            };
+            
+            const renderPreview = () => {
+                if (allBookPages.length === 0) {
+                    phoneScreenEl.innerHTML = '';
+                    pageIndicator.textContent = `Page 0 / 0`;
+                    prevPageBtn.disabled = true;
+                    nextPageBtn.disabled = true;
+                    return;
+                }
+                currentPageIndex = Math.max(0, Math.min(currentPageIndex, allBookPages.length - 1));
+                
+                phoneScreenEl.innerHTML = '';
+                phoneScreenEl.scrollTop = 0;
+                phoneScreenEl.classList.toggle('title-page-preview', currentPageIndex === 0);
+                
+                const currentPage = allBookPages[currentPageIndex];
+                
+                // Display audio/lyrics indicators
+                let mediaInfoText = '';
+                if (currentPage.audio) mediaInfoText += '🎵 ଅଡିଓ ';
+                if (currentPage.lyrics) mediaInfoText += '📜 Lyrics';
+                
+                if (mediaInfoText) {
+                    const mediaInfo = document.createElement('p');
+                    mediaInfo.innerHTML = `<i>${mediaInfoText} ଉପଲବ୍ଧ</i>`;
+                    mediaInfo.style.fontSize = '12px';
+                    mediaInfo.style.textAlign = 'center';
+                    mediaInfo.style.color = '#777';
+                    mediaInfo.style.borderBottom = '1px solid #eee';
+                    mediaInfo.style.paddingBottom = '10px';
+                    phoneScreenEl.appendChild(mediaInfo);
+                }
+                
+                currentPage.content.forEach(item => {
+                    if (item.type === 'header') {
+                        const h3 = document.createElement('h3');
+                        h3.textContent = item.text;
+                        phoneScreenEl.appendChild(h3);
+                    } else if (item.type === 'paragraph') {
+                        const p = document.createElement('p');
+                        item.spans.forEach(span => {
+                            let el;
+                            if (span.style === 'bold') el = document.createElement('strong');
+                            else if (span.style === 'italic') el = document.createElement('em');
+                            else el = document.createElement('span');
+                            el.textContent = span.text;
+                            p.appendChild(el);
+                        });
+                        phoneScreenEl.appendChild(p);
+                    }
+                });
+                
+                pageIndicator.textContent = `Page ${currentPageIndex + 1} / ${allBookPages.length}`;
+                prevPageBtn.disabled = currentPageIndex === 0;
+                nextPageBtn.disabled = currentPageIndex === allBookPages.length - 1;
+            };
+
+            const reconstructMarkdownFromPage = (pageContent, ignoreFirstThree = false) => {
+                const contentToProcess = ignoreFirstThree ? pageContent.slice(3) : pageContent;
+                const blocks = contentToProcess.map(item => {
+                    if (item.type === 'header') return `## ${item.text}`;
+                    if (item.type === 'paragraph') {
+                        return item.spans.map(span => {
+                            if (span.style === 'bold') return `**${span.text}**`;
+                            if (span.style === 'italic') return `*${span.text}*`;
+                            return span.text;
+                        }).join('');
+                    }
+                    return '';
+                });
+                return blocks.join('\n\n');
+            };
+
+            const populateFormWithJson = (data) => {
+                if (!data || !data.title || !data.pages || !Array.isArray(data.pages)) {
+                    alert('ଅମାନ୍ୟ କିମ୍ବା ଭୁଲ୍ ଫର୍ମାଟ୍ ହୋଇଥିବା JSON ଫାଇଲ୍।');
+                    return;
+                }
+                
+                bookNameEl.value = data.title || '';
+                authorNameEl.value = data.author || '';
+                sourceNameEl.value = data.source || '';
+                coverUrlEl.value = data.coverpage || '';
+                
+                // Populate audio URLs for title and TOC pages
+                titlePageAudioEl.value = data.pages[0]?.audio || '';
+                tocPageAudioEl.value = data.pages[1]?.audio || '';
+                
+                // Populate introduction text
+                let intro = '';
+                if(data.pages[0]?.content) {
+                    intro = reconstructMarkdownFromPage(data.pages[0].content, true).trim();
+                }
+                introTextEl.value = intro;
+                
+                pagesContainer.innerHTML = '';
+                
+                const contentPages = data.pages.slice(2);
+                contentPages.forEach((page) => {
+                    const markdownContent = reconstructMarkdownFromPage(page.content);
+                    createPageEditor(pagesContainer.children.length + 3, markdownContent, page.audio || '', page.lyrics || '');
+                });
+
+                if (contentPages.length === 0) {
+                    createPageEditor(3);
+                }
+
+                currentPageIndex = 0;
+                updateAll();
+            };
+
+            // --- Floating Toolbar Logic ---
+            const handleTextSelection = (e, textarea) => {
+                currentActiveTextarea = textarea;
+                const start = textarea.selectionStart;
+                const end = textarea.selectionEnd;
+
+                if (start !== end) {
+                    // Show toolbar near mouse
+                    const x = e.pageX;
+                    const y = e.pageY;
+                    toolbar.style.display = 'block';
+                    toolbar.style.left = `${x}px`;
+                    toolbar.style.top = `${y - 40}px`;
+                } else {
+                    toolbar.style.display = 'none';
+                }
+            };
+
+            const applyFormat = (prefix, suffix) => {
+                if (!currentActiveTextarea) return;
+                const ta = currentActiveTextarea;
+                const start = ta.selectionStart;
+                const end = ta.selectionEnd;
+                const text = ta.value;
+                const selectedText = text.substring(start, end);
+
+                const replacement = prefix + selectedText + suffix;
+                ta.setRangeText(replacement, start, end, 'select');
+                
+                // Trigger input event to update preview
+                ta.dispatchEvent(new Event('input'));
+                toolbar.style.display = 'none';
+            };
+
+            toolBold.onclick = () => applyFormat('**', '**');
+            toolItalic.onclick = () => applyFormat('*', '*');
+            toolHeading.onclick = () => applyFormat('## ', '');
+            
+            // Hide toolbar when clicking elsewhere
+            document.addEventListener('mousedown', (e) => {
+                if (e.target.closest('#floating-toolbar') || e.target.closest('textarea')) return;
+                toolbar.style.display = 'none';
+            });
+
+            // --- Reorder Logic ---
+            const toggleReorderMode = (enable) => {
+                pagesContainer.classList.toggle('reorder-mode', enable);
+                reorderBtn.style.display = enable ? 'none' : 'block';
+                finishReorderBtn.style.display = enable ? 'block' : 'none';
+                addPageBtn.disabled = enable;
+
+                const wrappers = pagesContainer.querySelectorAll('.page-editor-wrapper');
+                wrappers.forEach(wrapper => {
+                    wrapper.draggable = enable;
+                    
+                    if(enable) {
+                         // Populate summary
+                        const ta = wrapper.querySelector('.page-content');
+                        const summary = wrapper.querySelector('.page-summary');
+                        const lines = ta.value.split('\n');
+                        let summaryText = "(ଖାଲି ପୃଷ୍ଠା)";
+                        
+                        // Find header or first text
+                        for(let line of lines) {
+                            if(line.trim().startsWith('## ')) {
+                                summaryText = line.trim().substring(3);
+                                break;
+                            } else if(line.trim().length > 0 && summaryText === "(ଖାଲି ପୃଷ୍ଠା)") {
+                                summaryText = line.trim().substring(0, 30) + '...';
+                            }
+                        }
+                        summary.textContent = summaryText;
+
+                        wrapper.addEventListener('dragstart', handleDragStart);
+                        wrapper.addEventListener('dragend', handleDragEnd);
+                        wrapper.addEventListener('dragover', handleDragOver);
+                        wrapper.addEventListener('drop', handleDrop);
+                    } else {
+                        wrapper.removeEventListener('dragstart', handleDragStart);
+                        wrapper.removeEventListener('dragend', handleDragEnd);
+                        wrapper.removeEventListener('dragover', handleDragOver);
+                        wrapper.removeEventListener('drop', handleDrop);
+                    }
+                });
+            };
+
+            let draggedElement = null;
+            function handleDragStart(e) {
+                draggedElement = this;
+                setTimeout(() => this.classList.add('dragging'), 0);
+            }
+            function handleDragEnd() {
+                this.classList.remove('dragging');
+                draggedElement = null;
+            }
+            function handleDragOver(e) {
+                e.preventDefault();
+                const afterElement = getDragAfterElement(pagesContainer, e.clientY);
+                if (afterElement == null) {
+                    pagesContainer.appendChild(draggedElement);
+                } else {
+                    pagesContainer.insertBefore(draggedElement, afterElement);
+                }
+            }
+            function handleDrop(e) {
+                e.preventDefault();
+            }
+
+            function getDragAfterElement(container, y) {
+                const draggableElements = [...container.querySelectorAll('.page-editor-wrapper:not(.dragging)')];
+                return draggableElements.reduce((closest, child) => {
+                    const box = child.getBoundingClientRect();
+                    const offset = y - box.top - box.height / 2;
+                    if (offset < 0 && offset > closest.offset) {
+                        return { offset: offset, element: child };
+                    } else {
+                        return closest;
+                    }
+                }, { offset: Number.NEGATIVE_INFINITY }).element;
+            }
+
+            reorderBtn.addEventListener('click', () => toggleReorderMode(true));
+            finishReorderBtn.addEventListener('click', () => {
+                toggleReorderMode(false);
+                updatePageEditorLabels();
+                updateAll();
+            });
+
+
+            // --- Event Listeners & File Loading ---
+            uploadJsonBtn.addEventListener('click', () => uploadJsonInput.click());
+            uploadJsonInput.addEventListener('change', (event) => {
+                const file = event.target.files[0];
+                handleFileLoad(file);
+                event.target.value = null;
+            });
+
+            // Specific Drag and Drop on Upload Button
+            const dropButton = document.getElementById('uploadJsonBtn');
+            const originalButtonText = dropButton.textContent;
+
+            dropButton.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                dropButton.classList.add('drag-over-active');
+                dropButton.textContent = 'ଫାଇଲ୍ ଏଠାରେ ଛାଡନ୍ତୁ';
+            });
+
+            dropButton.addEventListener('dragleave', (e) => {
+                dropButton.classList.remove('drag-over-active');
+                dropButton.textContent = originalButtonText;
+            });
+
+            dropButton.addEventListener('drop', (e) => {
+                e.preventDefault();
+                dropButton.classList.remove('drag-over-active');
+                dropButton.textContent = originalButtonText;
+
+                if (e.dataTransfer.files.length > 0) {
+                    const file = e.dataTransfer.files[0];
+                    if (file.type === "application/json" || file.name.endsWith('.json')) {
+                        handleFileLoad(file);
+                    } else {
+                        alert("ଦୟାକରି କେବଳ JSON ଫାଇଲ୍ ଡ୍ରପ୍ କରନ୍ତୁ |");
+                    }
+                }
+            });
+
+
+            function handleFileLoad(file) {
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    try {
+                        const jsonData = JSON.parse(e.target.result);
+                        populateFormWithJson(jsonData);
+                    } catch (error) {
+                        console.error('JSON parsing error:', error);
+                        alert('JSON ଫାଇଲ୍ ପାର୍ସ କରିବାରେ ତ୍ରୁଟି। ଦୟାକରି ଫାଇଲ୍ ଯାଞ୍ଚ କରନ୍ତୁ।');
+                    }
+                };
+                reader.onerror = () => { alert('ଫାଇଲ୍ ପଢିବାରେ ତ୍ରୁଟି।'); };
+                reader.readAsText(file);
+            }
+
+            prevPageBtn.addEventListener('click', () => { if (currentPageIndex > 0) { currentPageIndex--; renderPreview(); } });
+            nextPageBtn.addEventListener('click', () => { if (currentPageIndex < allBookPages.length - 1) { currentPageIndex++; renderPreview(); } });
+            
+            document.querySelectorAll('input, textarea').forEach(el => el.addEventListener('input', updateAll));
+            addPageBtn.addEventListener('click', () => createPageEditor(pagesContainer.children.length + 3));
+            
+            copyBtn.addEventListener('click', () => {
+                navigator.clipboard.writeText(jsonOutputEl.textContent).then(() => {
+                    copyBtn.textContent = 'କପି ହେଲା!';
+                    setTimeout(() => { copyBtn.textContent = 'JSON କପି କରନ୍ତୁ'; }, 2000);
+                });
+            });
+
+            downloadBtn.addEventListener('click', () => {
+                const suggestedName = (bookNameEl.value.trim().toLowerCase().replace(/\s+/g, '-') || 'book').replace(/[^a-z0-9-]/g, '');
+                const userProvidedName = prompt("ଫାଇଲ୍ ନାମ ଦିଅନ୍ତୁ (.json ବିନା):", suggestedName);
+                if (!userProvidedName || userProvidedName.trim() === '') return; 
+
+                const filename = `${userProvidedName.trim()}.json`;
+                const blob = new Blob([jsonOutputEl.textContent], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            });
+
+            // Initial setup
+            createPageEditor(3);
+            updateAll();
+        });
+    </script>
+</body>
+</html>
