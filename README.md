@@ -44,7 +44,8 @@ You can find me on all platforms with the username **@sandeepbiswalg**
 
 [![Play Store](https://img.shields.io/badge/Play_Store-34A853?style=for-the-badge&logo=google-play&logoColor=white)](https://play.google.com/store/apps/dev?id=6501689567504406715)
 [![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@sandeepbiswalg)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/sandeepbiswalg)
+[![Instagram](https://img.shields.io/badge/Instagram-sandeepbiswalg-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/sandeepbiswalg)
+[![Instagram](https://img.shields.io/badge/Instagram-sbgapps-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/sbgapps)
 [![Twitter/X](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/sandeepbiswalg)
 [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/imsbg)
 [![Portfolio](https://img.shields.io/badge/Website-imsbg.github.io-blue?style=for-the-badge)](https://imsbg.github.io/)
