@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#f5f5f7">
+    
+    <title>Sandeep Biswal G Apps & Games | Best Odia Apps</title>
+  <meta name="title" content="Sandeep Biswal G Apps | Odia Apps">
+    <meta name="description" content="Download top-rated Odia apps and games by Sandeep Biswal G. Discover Plyxo Games, Odia Bhasa, Atomic Guru, Ganita Bingya, and various smart educational tools built in Odisha.">
+    <meta name="keywords" content="Sandeep Biswal G Apps, Sandeep Biswal G, Games, Odia Apps, Odia Bhasa App, Plyxo Games, Odia Bhasa, Atomic Guru, Ganita Bingya, SB Video Call, SB SSTV Encoder, Odia Developer, Best Apps from Odisha, Dhenkanal Developer, Educational Apps, Smart Learning Tools, Android Apps, ଓଡ଼ିଆ ଆପ୍, Odia Language Apps, Indian App Developer, SBG Apps, SBG Games, Odia Bhasa Apps">
+    <meta name="author" content="Sandeep Biswal G">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://imsbg.github.io/apps/" />
+<link rel="icon" href="https://images.igdb.com/igdb/image/upload/t_original/clhls.webp" type="image/png">
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://imsbg.github.io/apps/">
+    <meta property="og:title" content="Sandeep Biswal G Apps & Games">
+    <meta property="og:description" content="Discover smart learning tools, Odia Bhasa, Plyxo Games, and more developed by Sandeep Biswal G.">
+    <meta property="og:image" content="https://images.igdb.com/igdb/image/upload/t_original/clhls.webp">
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://imsbg.github.io/apps/">
+    <meta name="twitter:title" content="Sandeep Biswal G Apps & Games">
+    <meta name="twitter:description" content="Discover smart learning tools, Odia Bhasa, Plyxo Games, and more developed by Sandeep Biswal G.">
+    <meta name="twitter:image" content="https://images.igdb.com/igdb/image/upload/t_original/clhls.webp">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Oriya:wght@100..900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #f5f5f7;
+            --card-bg: #ffffff;
+            --text-main: #1d1d1f;
+            --text-muted: #86868b;
+            --btn-bg: #e8f0fe;
+            --btn-text: #0066cc;
+            --border-color: #e5e5ea;
+            --font-family: 'Noto Sans Oriya', sans-serif;
+            --playstore-green: #01875f;
+            --header-height: 70px;
+        }
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+            margin: 0;
+            padding: 0;
+            padding-top: var(--header-height); /* Keeps content from hiding under fixed header */
+            width: 100%;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Prevent horizontal scroll cleanly */
+        .site-wrapper {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: var(--font-family);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Perfectly Sticky & Fixed Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            height: var(--header-height);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .header-left {
+            font-size: 22px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #007AFF 0%, #AF52DE 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Menu Dropdown */
+        .menu-container {
+            position: relative;
+        }
+
+        .menu-icon {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 5px;
+        }
+
+        .menu-icon span {
+            width: 24px;
+            height: 2px;
+            background-color: var(--text-main);
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 45px;
+            right: 0;
+            background: var(--card-bg);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border-radius: 12px;
+            width: 220px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            z-index: 1001;
+        }
+
+        .dropdown.show {
+            display: block;
+            animation: fadeIn 0.2s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 14px 16px;
+            font-size: 14px;
+            border-bottom: 1px solid var(--border-color);
+            transition: background 0.2s;
+        }
+
+        .dropdown a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown a:hover {
+            background: var(--bg-color);
+        }
+
+        /* Language Toggle */
+        .lang-switch {
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--btn-text);
+            background: var(--btn-bg);
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: none;
+            transition: 0.2s;
+        }
+        .lang-switch:hover {
+            background: #d1e2fa;
+        }
+
+        /* Main Container */
+        main {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: calc(100vh - 350px);
+        }
+
+        /* Featured App / Banner */
+        .featured-app {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: 20px;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .featured-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0) 100%);
+            padding: 20px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .featured-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .featured-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 14px;
+            object-fit: cover;
+            border: 1px solid rgba(255,255,255,0.3);
+            flex-shrink: 0;
+        }
+
+        .featured-text {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .featured-text h2 {
+            font-size: 20px;
+            line-height: 1.2;
+            margin-bottom: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .meta-info {
+            display: flex;
+            gap: 10px;
+            font-size: 13px;
+            opacity: 0.9;
+            align-items: center;
+        }
+        
+        .meta-info span {
+            background: rgba(255,255,255,0.25);
+            padding: 4px 10px;
+            border-radius: 8px;
+        }
+
+        /* App Lists Section */
+        .list-section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            width: 100%;
+        }
+
+        /* Enhanced Animated Card Layout */
+        .app-item {
+            display: flex;
+            flex-direction: column;
+            padding: 16px;
+            border-radius: 18px;
+            background: var(--card-bg);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            border: 1px solid var(--border-color);
+            gap: 15px;
+            width: 100%;
+            cursor: pointer;
+            position: relative;
+            /* Smooth transitions for scaling and shadows */
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                        box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* The "Become Big" Hover Animation */
+        .app-item:hover {
+            transform: scale(1.04) translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            z-index: 10;
+            border-color: #d1d1d6;
+        }
+
+        .app-item:active {
+            transform: scale(0.98);
+        }
+
+        .app-info-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .app-logo {
+            width: 65px;
+            height: 65px;
+            border-radius: 16px;
+            object-fit: cover;
+            border: 1px solid rgba(0,0,0,0.05);
+            background: #f5f5f7;
+            flex-shrink: 0;
+        }
+
+        .app-details {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .app-name {
+            font-size: 17px;
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--text-main);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .app-tagline {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .app-action-row {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            width: 100%;
+            border-top: 1px solid #f0f0f0;
+            padding-top: 15px;
+        }
+
+        .app-action-row.has-rank {
+            justify-content: space-between;
+        }
+
+        .app-rank {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 15px;
+            color: var(--text-muted);
+            font-weight: 800;
+        }
+
+        .rank-icon {
+            color: #f1c40f;
+            font-size: 18px;
+        }
+
+        .btn-action {
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            padding: 10px 28px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 15px;
+            display: inline-block;
+            text-align: center;
+            white-space: nowrap;
+            transition: all 0.2s;
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn-action:hover {
+            background: #d1e2fa;
+            transform: scale(1.05);
+        }
+
+        .btn-gradient {
+            background: linear-gradient(135deg, #007AFF 0%, #AF52DE 100%);
+            color: #ffffff !important;
+            box-shadow: 0 4px 15px rgba(175, 82, 222, 0.3);
+            border: none;
+        }
+        .btn-gradient:hover {
+            box-shadow: 0 6px 20px rgba(175, 82, 222, 0.5);
+        }
+
+        /* ==========================================
+           IFRAME PREVIEW MODAL STYLES 
+           ========================================== */
+        .preview-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .preview-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .preview-content {
+            background: #ffffff;
+            width: 90%;
+            max-width: 1000px;
+            height: 85vh;
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .preview-overlay.active .preview-content {
+            transform: scale(1);
+        }
+
+        .preview-header {
+            padding: 15px 20px;
+            background: #f5f5f7;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .preview-title {
+            font-weight: 800;
+            font-size: 18px;
+            color: var(--text-main);
+        }
+
+        .preview-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .preview-btn-open {
+            background: linear-gradient(135deg, #007AFF 0%, #AF52DE 100%);
+            color: white !important;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .preview-btn-close {
+            background: #e5e5ea;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            color: #1d1d1f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+        }
+        .preview-btn-close:hover {
+            background: #d1d1d6;
+        }
+
+        .preview-body {
+            flex: 1;
+            position: relative;
+            background: #f5f5f7;
+        }
+
+        #preview-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: white;
+            display: block;
+        }
+
+        /* Intelligent Fallback for Play Store Links */
+        .preview-fallback {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+            padding: 30px;
+        }
+        .preview-fallback svg {
+            width: 80px;
+            height: 80px;
+            fill: #01875f;
+            margin-bottom: 20px;
+        }
+        .preview-fallback h3 {
+            font-size: 22px;
+            margin: 0 0 10px 0;
+        }
+        .preview-fallback p {
+            color: var(--text-muted);
+            margin-bottom: 25px;
+        }
+
+        /* Footer Styles */
+        .site-footer {
+            background: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            padding: 60px 20px 40px;
+            margin-top: 50px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .btn-playstore {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #00A173 0%, var(--playstore-green) 100%);
+            color: #ffffff !important;
+            padding: 18px 40px;
+            font-size: 18px;
+            font-weight: 800;
+            border-radius: 40px;
+            text-decoration: none;
+            box-shadow: 0 8px 25px rgba(1, 135, 95, 0.35);
+            margin-bottom: 50px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-playstore:hover {
+            box-shadow: 0 12px 35px rgba(1, 135, 95, 0.5);
+            transform: translateY(-3px);
+        }
+
+        .btn-playstore:active {
+            transform: scale(0.96);
+        }
+
+        .btn-playstore svg {
+            width: 28px;
+            height: 28px;
+            fill: currentColor;
+        }
+
+        .footer-section-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 25px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 40px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .footer-links a {
+            color: var(--btn-text);
+            font-weight: 700;
+            font-size: 16px;
+            transition: opacity 0.2s;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        .copyright {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin: 0;
+            padding-top: 25px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Desktop Layout Adjustments */
+        @media (min-width: 768px) {
+            .featured-overlay {
+                flex-direction: row;
+                align-items: flex-end;
+                justify-content: space-between;
+                padding: 30px;
+            }
+            .featured-text h2 {
+                font-size: 28px;
+                white-space: normal;
+            }
+            .grid-container {
+                grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); 
+                gap: 25px;
+            }
+            .footer-links {
+                flex-direction: row;
+                justify-content: center;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="site-wrapper">
+        <header>
+            <div class="header-left">SBG Apps</div>
+            <div class="header-right">
+                <button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button>
+                <div class="menu-container">
+                    <div class="menu-icon" onclick="toggleMenu()">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <div class="dropdown" id="menuDropdown">
+                        <a href="privacy.html" id="menu-privacy">ଗୋପନୀୟତା ନୀତି</a>
+                        <a href="terms.html" id="menu-terms">ସେବା ସର୍ତ୍ତାବଳୀ</a>
+                        <a href="https://www.instagram.com/sandeepbiswalg" target="_blank">Instagram (@sandeepbiswalg)</a>
+                        <a href="https://www.instagram.com/sbgapps" target="_blank">Instagram (@sbgapps)</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main id="app-container">
+            <!-- Content gets injected by JavaScript -->
+        </main>
+
+        <!-- Appended Footer Section -->
+        <footer class="site-footer">
+            <div class="footer-content">
+                <a href="https://play.google.com/store/apps/dev?id=6501689567504406715" target="_blank" class="btn-playstore">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19.49 11.08l-13.6-7.85C5.1 2.76 4 3.32 4 4.22v15.56c0 .9.1 1.46.89 1.01l13.6-7.85c.67-.39.67-1.47 0-1.86zM6 5.16l8.83 5.11-2.94 2.94L6 6.38V5.16zm0 13.68v-1.22l5.89-6.83 2.94 2.94-8.83 5.11zm11.75-6.32l-1.68.97-2.07-2.07 2.07-2.07 1.68.97c.36.21.36.76 0 .97z" opacity="0.3"/>
+                        <path d="M4 4.22v15.56c0 .54.4 1 .89 1.01V3.21c-.49.01-.89.47-.89 1.01z" fill="#fff" opacity="0.3"/>
+                        <path d="M19.49 12.94l-13.6 7.85c-.49.28-.89.17-.89-.37v1.01c0 .54.4.65.89.37l13.6-7.85c.67-.39.67-1.02 0-1.01z" fill="#fff" opacity="0.3"/>
+                        <path d="M5.89 3.21l13.6 7.85c.67.39.67 1.02 0 1.01l-13.6-7.85C5.4 3.94 5 4.05 5 4.59v-1.01c0-.54.4-.65.89-.37z" fill="#fff" opacity="0.3"/>
+                        <path d="M5 20.79V4.22c0-.9.1-1.46.89-1.01l13.6 7.85c.67.39.67 1.47 0 1.86l-13.6 7.85c-.79.45-.89-.11-.89-1.01zm2-13.35v9.11L14.77 12 7 7.44z"/>
+                    </svg>
+                    <span id="footer-playstore">ପ୍ଲେ ଷ୍ଟୋର୍ ରେ ଦେଖନ୍ତୁ</span>
+                </a>
+                
+                <h4 class="footer-section-title" id="footer-useful-links">ଦରକାରୀ ଲିଙ୍କ୍ (Useful Links)</h4>
+                <ul class="footer-links">
+                    <li><a href="https://imsbg.github.io/" target="_blank">Sandeep Biswal G (Website)</a></li>
+                    <li><a href="https://www.instagram.com/sandeepbiswalg" target="_blank">Sandeep Biswal G Instagram</a></li>
+                    <li><a href="https://www.instagram.com/sbgapps" target="_blank">SBGApps Instagram</a></li>
+                </ul>
+                
+                <p class="copyright">© Sandeep Biswal G Apps | Dhenkanal, Odisha 759001</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- IFRAME PREVIEW MODAL -->
+    <div id="preview-overlay" class="preview-overlay">
+        <div class="preview-content">
+            <div class="preview-header">
+                <div class="preview-title" id="preview-title">App Name</div>
+                <div class="preview-actions">
+                    <a href="#" target="_blank" class="preview-btn-open" id="preview-open-btn">Open Link</a>
+                    <button class="preview-btn-close" onclick="closePreview()">✕</button>
+                </div>
+            </div>
+            <div class="preview-body">
+                <!-- Intelligent Fallback for PlayStore Links -->
+                <div id="preview-fallback" class="preview-fallback">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M4 4.22v15.56c0 .9.1 1.46.89 1.01l13.6-7.85c.67-.39.67-1.47 0-1.86l-13.6-7.85C4.1 2.76 4 3.32 4 4.22z"/>
+                    </svg>
+                    <h3>Play Store App</h3>
+                    <p id="fallback-text">This is a Google Play Store app. Click the button above to view and download it securely on the Play Store.</p>
+                </div>
+                <!-- Standard Web Iframe -->
+                <iframe id="preview-iframe" src=""></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // UI LOCKDOWN SCRIPT (Anti-Copy / Anti-Select)
+        // ==========================================
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.addEventListener('selectstart', event => event.preventDefault());
+        document.addEventListener('copy', event => event.preventDefault());
+        document.addEventListener('cut', event => event.preventDefault());
+        document.addEventListener('paste', event => event.preventDefault());
+        document.addEventListener('dragstart', event => event.preventDefault());
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'F12' || event.keyCode === 123) event.preventDefault();
+            if (event.ctrlKey && (event.key.toLowerCase() === 'u' || event.key.toLowerCase() === 's' || event.key.toLowerCase() === 'p')) event.preventDefault();
+            if (event.ctrlKey && event.shiftKey && (event.key.toLowerCase() === 'i' || event.key.toLowerCase() === 'j' || event.key.toLowerCase() === 'c')) event.preventDefault();
+        });
+
+        // ==========================================
+        // --- Data Structure ---
+        const appData = {
+            featured: {
+                bg: "https://imsbg.github.io/odiabhasa/images/banner/unnamed%20(2).webp",
+                logo: "https://imsbg.github.io/Plyxo-Games/img/logo.png",
+                name: { en: "Plyxo Games : Where Every Move Matters", od: "ପ୍ଲିକ୍ସୋ ଗେମ୍ସ୍ : ଯେଉଁଠି ପ୍ରତିଟି ଚାଲ୍ ଗୁରୁତ୍ୱପୂର୍ଣ୍ଣ" },
+                size: "25MB",
+                link: "https://play.google.com/store/apps/details?id=in.sandeep.plyxogames",
+                btnText: { en: "Download", od: "ଡାଉନଲୋଡ୍" }
+            },
+            categories: [
+                {
+                    title: { en: "Apps", od: "ଆପ୍" },
+                    items: [
+                        {
+                            rank: 1, 
+                            name: { en: "Odia Bhasa", od: "ଓଡିଆ ଭାଷା" },
+                            tagline: { en: "Learn to read and write Odia in one simple app.", od: "ଗୋଟିଏ ସରଳ ଆପରେ ଓଡିଆ ପଢିବା ଏବଂ ଲେଖିବା ଶିଖନ୍ତୁ।" },
+                            logo: "https://imsbg.github.io/odiabhasa/images/app.png",
+                            link: "https://play.google.com/store/apps/details?id=in.sandeep.odiabhasa",
+                            btnText: { en: "Download", od: "ଡାଉନଲୋଡ୍" }
+                        },
+                        {
+                            name: { en: "Atomic Guru", od: "ଆଟମିକ୍ ଗୁରୁ" },
+                            tagline: { en: "Smart Learning", od: "ସ୍ମାର୍ଟ ଶିକ୍ଷା" },
+                            logo: "https://raw.githubusercontent.com/imsbg/Atomic-Guru/master/images/logo.png",
+                            link: "https://play.google.com/store/apps/details?id=com.sandeep.atomicguru",
+                            btnText: { en: "Download", od: "ଡାଉନଲୋଡ୍" }
+                        },
+                        {
+                            name: { en: "Ganita Bingya", od: "ଗଣିତ ବିଜ୍ଞ" },
+                            tagline: { en: "Turn your idle time into a productive practice session", od: "ଆପଣଙ୍କ ଖାଲି ସମୟକୁ ଏକ ଉତ୍ପାଦକ ଅଭ୍ୟାସରେ ପରିଣତ କରନ୍ତୁ" },
+                            logo: "https://imsbg.github.io/images/sandeep-biswal-g/Ganita-Bingya-App.png",
+                            link: "https://imsbg.github.io/Ganita-Bingya-App/",
+                            btnText: { en: "Download", od: "ଡାଉନଲୋଡ୍" }
+                        },
+                        {
+                            name: { en: "Plyxo Games", od: "ପ୍ଲିକ୍ସୋ ଗେମ୍ସ୍" },
+                            tagline: { en: "Where Every Move Matters", od: "ଯେଉଁଠି ପ୍ରତିଟି ଚାଲ୍ ଗୁରୁତ୍ୱପୂର୍ଣ୍ଣ" },
+                            logo: "https://imsbg.github.io/Plyxo-Games/img/logo.png",
+                            link: "https://play.google.com/store/apps/details?id=in.sandeep.plyxogames",
+                            btnText: { en: "Download", od: "ଡାଉନଲୋଡ୍" }
+                        }
+                    ]
+                },
+                {
+                    title: { en: "Websites", od: "ୱେବସାଇଟ୍" },
+                    items: [
+                        {
+                            rank: 1, 
+                            name: { en: "Odia Bhasa", od: "ଓଡିଆ ଭାଷା" },
+                            tagline: { en: "Learn to read and write Odia in one simple app.", od: "ଗୋଟିଏ ସରଳ ଆପରେ ଓଡିଆ ପଢିବା ଏବଂ ଲେଖିବା ଶିଖନ୍ତୁ।" },
+                            logo: "https://imsbg.github.io/odiabhasa/images/app.png",
+                            link: "https://imsbg.github.io/odiabhasa/app/",
+                            btnText: { en: "Open", od: "ଖୋଲନ୍ତୁ" }
+                        },
+                        {
+                            name: { en: "Atomic Guru", od: "ଆଟମିକ୍ ଗୁରୁ" },
+                            tagline: { en: "Smart Learning", od: "ସ୍ମାର୍ଟ ଶିକ୍ଷା" },
+                            logo: "https://raw.githubusercontent.com/imsbg/Atomic-Guru/master/images/logo.png",
+                            link: "https://imsbg.github.io/Atomic-Guru/open",
+                            btnText: { en: "Open", od: "ଖୋଲନ୍ତୁ" }
+                        },
+                        {
+                            name: { en: "ଶିକ୍ଷଣୀୟ ଉପକରଣ", od: "ଶିକ୍ଷଣୀୟ ଉପକରଣ" },
+                            tagline: { en: "Turn your idle time into a productive practice session", od: "ଆପଣଙ୍କ ଖାଲି ସମୟକୁ ଏକ ଉତ୍ପାଦକ ଅଭ୍ୟାସରେ ପରିଣତ କରନ୍ତୁ" },
+                            logo: "https://imsbg.github.io/images/sandeep-biswal-g/Ganita-Bingya-App.png",
+                            link: "https://imsbg.github.io/Ganita-Bingya-App/sikhya/",
+                            btnText: { en: "Open", od: "ଖୋଲନ୍ତୁ" }
+                        },
+                        {
+                            name: { en: "SB Video Call", od: "ଏସ୍‌ବି ଭିଡିଓ କଲ୍" },
+                            tagline: { en: "Video Call Web App", od: "ଭିଡିଓ କଲ ୱେବ୍ ଆପ୍" },
+                            logo: "https://raw.githubusercontent.com/sandeepgin/SBCALL/refs/heads/main/sbg/sbg.ico",
+                            link: "https://imsbg.github.io/SBCALL/od/",
+                            btnText: { en: "Open", od: "ଖୋଲନ୍ତୁ" }
+                        },
+                        {
+                            name: { en: "SB SSTV Encoder", od: "ଏସ୍‌ବି SSTV ଏନକୋଡର୍" },
+                            tagline: { en: "Convert Image to SSTV Signal", od: "ଛବିକୁ SSTV ସିଗ୍ନାଲ୍‌ରେ ପରିବର୍ତ୍ତନ କରନ୍ତୁ" },
+                            logo: "https://raw.githubusercontent.com/imsbg/SBSSTV/refs/heads/main/sg%20sstv.png",
+                            link: "https://imsbg.github.io/SBSSTV/",
+                            btnText: { en: "Open", od: "ଖୋଲନ୍ତୁ" }
+                        },
+                        {
+                            name: { en: "SB Texto", od: "ଏସ୍‌ବି ଟେକ୍ସ୍ଟୋ" },
+                            tagline: { en: "Rare Messaging", od: "ବିରଳ ସନ୍ଦେଶ" },
+                            logo: "https://imsbg.github.io/SBTEXTO/logo.png",
+                            link: "https://imsbg.github.io/SBTEXTO/?od",
+                            btnText: { en: "Open", od: "ଖୋଲନ୍ତୁ" }
+                        },
+                        {
+                            name: { en: "Odia Calendar", od: "ଓଡିଆ କ୍ୟାଲେଣ୍ଡର" },
+                            tagline: { en: "Check Odia Dates & Festivals", od: "ଓଡିଆ ତାରିଖ ଏବଂ ପର୍ବପର୍ବାଣୀ ଦେଖନ୍ତୁ" },
+                            logo: "https://imsbg.github.io/odiabhasa/images/app.png",
+                            link: "https://imsbg.github.io/odiabhasa/calendar/",
+                            btnText: { en: "Open", od: "ଖୋଲନ୍ତୁ" }
+                        }
+                    ]
+                }
+            ]
+        };
+
+        // --- State Management with URL & LocalStorage Memory ---
+        let currentLang = 'od'; // Default to Odia
+
+        function initializeLanguage() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const urlBhasa = urlParams.get('bhasa');
+            const savedLang = localStorage.getItem('sbg_apps_lang');
+
+            if (urlBhasa === 'english') { currentLang = 'en'; } 
+            else if (urlBhasa === 'odia') { currentLang = 'od'; } 
+            else if (savedLang === 'en' || savedLang === 'od') { currentLang = savedLang; }
+
+            applyLanguageState();
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'od' : 'en';
+            applyLanguageState();
+        }
+
+        function applyLanguageState() {
+            localStorage.setItem('sbg_apps_lang', currentLang);
+
+            const newUrlParam = currentLang === 'en' ? 'english' : 'odia';
+            const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?bhasa=' + newUrlParam;
+            window.history.replaceState({ path: newUrl }, '', newUrl);
+
+            document.getElementById('langBtn').innerText = currentLang === 'en' ? 'ଓଡ଼ିଆ' : 'English';
+            
+            document.getElementById('menu-privacy').innerText = currentLang === 'en' ? 'Privacy Policy' : 'ଗୋପନୀୟତା ନୀତି';
+            document.getElementById('menu-terms').innerText = currentLang === 'en' ? 'Terms of Service' : 'ସେବା ସର୍ତ୍ତାବଳୀ';
+            
+            document.getElementById('footer-useful-links').innerText = currentLang === 'en' ? 'Useful Links' : 'ଦରକାରୀ ଲିଙ୍କ୍';
+            document.getElementById('footer-playstore').innerText = currentLang === 'en' ? 'View on Play Store' : 'ପ୍ଲେ ଷ୍ଟୋର୍ ରେ ଦେଖନ୍ତୁ';
+            document.getElementById('fallback-text').innerText = currentLang === 'en' 
+                ? "This is a Google Play Store app. Click the button above to view and download it securely on the Play Store."
+                : "ଏହା ଏକ ଗୁଗୁଲ୍ ପ୍ଲେ ଷ୍ଟୋର୍ ଆପ୍ । ଏହାକୁ ଦେଖିବା ଏବଂ ଡାଉନଲୋଡ୍ କରିବା ପାଇଁ ଉପରେ ଥିବା ବଟନ୍ ଉପରେ କ୍ଲିକ୍ କରନ୍ତୁ ।";
+
+            renderUI();
+        }
+
+        // --- UI Interactions ---
+        function toggleMenu() {
+            document.getElementById('menuDropdown').classList.toggle('show');
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.menu-icon') && !event.target.matches('.menu-icon span')) {
+                var dropdowns = document.getElementsByClassName("dropdown");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    if (dropdowns[i].classList.contains('show')) {
+                        dropdowns[i].classList.remove('show');
+                    }
+                }
+            }
+        }
+
+        // --- Hover Animation & Iframe Preview Logic ---
+        let hoverTimer;
+
+        function startHoverTimer(link, name, btnText) {
+            hoverTimer = setTimeout(() => {
+                showIframePreview(link, name, btnText);
+            }, 2000); // Trigger after exactly 2 seconds
+        }
+
+        function cancelHoverTimer() {
+            clearTimeout(hoverTimer);
+        }
+
+        function showIframePreview(link, name, btnText) {
+            const overlay = document.getElementById('preview-overlay');
+            const title = document.getElementById('preview-title');
+            const openBtn = document.getElementById('preview-open-btn');
+            const iframe = document.getElementById('preview-iframe');
+            const fallback = document.getElementById('preview-fallback');
+
+            // Set Data
+            title.innerText = name;
+            openBtn.href = link;
+            openBtn.innerText = btnText;
+
+            // Prevent connection error on Play Store links
+            if(link.includes('play.google.com')) {
+                iframe.style.display = 'none';
+                fallback.style.display = 'flex';
+                iframe.src = ''; 
+            } else {
+                iframe.style.display = 'block';
+                fallback.style.display = 'none';
+                iframe.src = link;
+            }
+
+            overlay.classList.add('active');
+        }
+
+        function closePreview() {
+            const overlay = document.getElementById('preview-overlay');
+            const iframe = document.getElementById('preview-iframe');
+            overlay.classList.remove('active');
+            
+            // Clear iframe source after animation finishes to stop audio/video
+            setTimeout(() => {
+                iframe.src = '';
+            }, 300);
+        }
+
+        // Allow clicking outside the modal content to close it
+        document.getElementById('preview-overlay').addEventListener('click', function(e) {
+            if(e.target === this) {
+                closePreview();
+            }
+        });
+
+        // --- Rendering Logic ---
+        function renderUI() {
+            const container = document.getElementById('app-container');
+            let html = '';
+
+            // 1. Render Featured App
+            const feat = appData.featured;
+            html += `
+                <div class="featured-app" style="background-image: url('${feat.bg}');" 
+                     onmouseenter="startHoverTimer('${feat.link}', '${feat.name[currentLang]}', '${feat.btnText[currentLang]}')" 
+                     onmouseleave="cancelHoverTimer()">
+                    <div class="featured-overlay">
+                        <div class="featured-info">
+                            <img src="${feat.logo}" alt="Logo" class="featured-logo">
+                            <div class="featured-text">
+                                <h2>${feat.name[currentLang]}</h2>
+                                <div class="meta-info">
+                                    <span>Game</span>
+                                    <span>📦 ${feat.size}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="${feat.link}" target="_blank" class="btn-action" style="background: rgba(255,255,255,0.95); color: var(--text-main); margin-top: 5px;">${feat.btnText[currentLang]}</a>
+                    </div>
+                </div>
+            `;
+
+            // 2. Render Categories
+            appData.categories.forEach(category => {
+                html += `
+                    <section class="list-section">
+                        <h3 class="section-title">${category.title[currentLang]}</h3>
+                        <div class="grid-container">
+                `;
+
+                category.items.forEach(item => {
+                    const rowClass = item.rank ? 'app-action-row has-rank' : 'app-action-row';
+                    const rankHtml = item.rank ? `<div class="app-rank">${item.rank} <span class="rank-icon">👑</span></div>` : '';
+                    const buttonClass = item.rank === 1 ? 'btn-action btn-gradient' : 'btn-action';
+                    const itemName = item.name[currentLang] || item.name.en;
+
+                    html += `
+                        <div class="app-item" 
+                             onmouseenter="startHoverTimer('${item.link}', '${itemName}', '${item.btnText[currentLang]}')" 
+                             onmouseleave="cancelHoverTimer()"
+                             onclick="window.open('${item.link}', '_blank')"> <!-- Make whole card clickable -->
+                            <div class="app-info-row">
+                                <img src="${item.logo}" alt="Logo" class="app-logo">
+                                <div class="app-details">
+                                    <div class="app-name">${itemName}</div>
+                                    <div class="app-tagline">${item.tagline[currentLang]}</div>
+                                </div>
+                            </div>
+                            <div class="${rowClass}">
+                                ${rankHtml}
+                                <a href="${item.link}" target="_blank" class="${buttonClass}" onclick="event.stopPropagation()">${item.btnText[currentLang]}</a>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                html += `
+                        </div>
+                    </section>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        // Run setup on load
+        initializeLanguage();
+    </script>
+</body>
+</html>
