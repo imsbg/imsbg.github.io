@@ -50,639 +50,1420 @@
     />
 
     <style>
-      /* CSS (Styling) */
-      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
-      @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Oriya:wght@400;500;600;700&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Oriya:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap");
 
       :root {
-        --bg-color: #f8f9fa;
-        --card-bg-color: #ffffff;
-        --text-color: #111827;
-        --subtle-text-color: #6b7280;
-        --border-color: #e5e7eb;
-        --primary-button-bg: #111827;
-        --primary-button-text: #ffffff;
-        --accent-color-available: #10b981;
-        --accent-bg-available: #d1fae5;
+        /* Midnight Obsidian Studio Palette (Default) */
+        --bg-base: #07080d;
+        --bg-grid: rgba(255, 255, 255, 0.032);
+        --surface: rgba(17, 20, 30, 0.78);
+        --surface-elevated: rgba(24, 28, 42, 0.88);
+        --surface-solid: #11141e;
+        --text-primary: #f8fafc;
+        --text-secondary: #94a3b8;
+        --text-muted: #64748b;
+        --border-subtle: rgba(255, 255, 255, 0.08);
+        --border-hover: rgba(255, 255, 255, 0.2);
+        --spotlight: rgba(245, 158, 11, 0.14);
+        --accent-1: #f59e0b; /* Warm Saffron Gold */
+        --accent-2: #fb7185; /* Coral Rose */
+        --accent-3: #818cf8; /* Electric Indigo */
+        --accent-pill-bg: rgba(245, 158, 11, 0.12);
+        --accent-pill-border: rgba(245, 158, 11, 0.28);
+        --accent-pill-text: #fbbf24;
+        --btn-primary-bg: #f8fafc;
+        --btn-primary-text: #090b12;
+        --btn-secondary-bg: rgba(255, 255, 255, 0.06);
+        --btn-secondary-text: #f8fafc;
+        --nav-bg: rgba(13, 16, 25, 0.76);
+        --nav-active-bg: #f8fafc;
+        --nav-active-text: #090b12;
+        --shadow-card: 0 20px 50px -18px rgba(0, 0, 0, 0.65);
+        --radius-bento: 28px;
+        --radius-card: 22px;
+        --radius-pill: 9999px;
+        --ease: cubic-bezier(0.16, 1, 0.3, 1);
       }
 
-      /* Basic Reset */
-      * {
+      [data-theme="light"] {
+        /* Warm Architectural Sand/Ivory Light Mode */
+        --bg-base: #f4f2ed;
+        --bg-grid: rgba(15, 23, 42, 0.045);
+        --surface: rgba(255, 255, 255, 0.86);
+        --surface-elevated: #ffffff;
+        --surface-solid: #ffffff;
+        --text-primary: #111318;
+        --text-secondary: #4b5563;
+        --text-muted: #6b7280;
+        --border-subtle: rgba(17, 19, 24, 0.09);
+        --border-hover: rgba(217, 119, 6, 0.38);
+        --spotlight: rgba(245, 158, 11, 0.12);
+        --accent-pill-bg: #fffbeb;
+        --accent-pill-border: #fde68a;
+        --accent-pill-text: #b45309;
+        --btn-primary-bg: #111318;
+        --btn-primary-text: #ffffff;
+        --btn-secondary-bg: rgba(17, 19, 24, 0.05);
+        --btn-secondary-text: #111318;
+        --nav-bg: rgba(255, 255, 255, 0.82);
+        --nav-active-bg: #111318;
+        --nav-active-text: #ffffff;
+        --shadow-card: 0 18px 40px -16px rgba(17, 19, 24, 0.1);
+      }
+
+      *,
+      *::before,
+      *::after {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
       }
+
+      html {
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
       body {
         font-family: "Inter", "Noto Sans Oriya", sans-serif;
-        background-color: var(--bg-color);
-        color: var(--text-color);
+        background-color: var(--bg-base);
+        color: var(--text-primary);
         line-height: 1.6;
-        padding-top: 100px;
-      }
-      .container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
+        min-height: 100vh;
+        padding-top: 96px;
+        padding-bottom: 48px;
+        overflow-x: hidden;
+        transition: background-color 0.35s ease, color 0.35s ease;
+        position: relative;
       }
 
-      /* Glassmorphism Header */
-      .main-header {
+      h1, h2, h3, .brand-mark, .card-index {
+        font-family: "Space Grotesk", "Noto Sans Oriya", sans-serif;
+      }
+
+      /* Architectural Subtle Grid + Warm Aurora Glow */
+      body::before {
+        content: "";
         position: fixed;
-        top: 15px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 100%;
-        max-width: 840px;
-        padding: 0 20px;
-        z-index: 1000;
-      }
-      .header-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 15px 25px;
-        background-color: rgba(
-          255,
-          255,
-          255,
-          0.7
-        ); /* Semi-transparent background */
-        -webkit-backdrop-filter: blur(12px); /* Blur for Safari */
-        backdrop-filter: blur(12px);
-        border: 1px solid rgba(229, 231, 235, 0.5); /* Lighter, semi-transparent border */
-        border-radius: 16px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
-      }
-      .nav-left,
-      .nav-right {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-      .nav-icons {
-        display: flex;
-        gap: 5px;
-      }
-      .nav-icons a,
-      .nav-icons button {
-        position: relative; /* Added for active indicator */
-        color: var(--subtle-text-color);
-        padding: 8px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: background-color 0.2s;
-        cursor: pointer;
-        border: none;
-        background: 0 0;
-      }
-      .nav-icons a:hover,
-      .nav-icons button:hover {
-        background-color: rgba(243, 244, 246, 0.7);
-      }
-      /* Style for the active navigation indicator dot */
-      .nav-icons a.active-nav::after,
-      .nav-icons button.active-nav::after {
-        content: '';
-        position: absolute;
-        bottom: -5px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 6px;
-        height: 6px;
-        background-color: var(--text-color);
-        border-radius: 50%;
-      }
-      .nav-icons svg {
-        width: 22px;
-        height: 22px;
-      }
-      .language-switcher {
-        background-color: var(--primary-button-bg);
-        color: var(--primary-button-text);
-        border: none;
-        padding: 10px 18px;
-        border-radius: 999px;
-        font-weight: 600;
-        cursor: pointer;
-        font-size: 14px;
-        transition: opacity 0.2s;
-        margin-left: 10px;
-      }
-      .language-switcher:hover {
-        opacity: 0.85;
+        inset: 0;
+        background-image:
+          linear-gradient(to right, var(--bg-grid) 1px, transparent 1px),
+          linear-gradient(to bottom, var(--bg-grid) 1px, transparent 1px);
+        background-size: 56px 56px;
+        mask-image: radial-gradient(ellipse 85% 70% at 50% 15%, #000 35%, transparent 100%);
+        -webkit-mask-image: radial-gradient(ellipse 85% 70% at 50% 15%, #000 35%, transparent 100%);
+        pointer-events: none;
+        z-index: -2;
       }
 
-      /* Menu Modal */
-      .modal-overlay {
+      .aurora-layer {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: -1;
+        overflow: hidden;
+      }
+
+      .aurora-blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(110px);
+        opacity: 0.24;
+      }
+
+      [data-theme="light"] .aurora-blob {
+        opacity: 0.16;
+      }
+
+      .aurora-1 {
+        width: 560px;
+        height: 560px;
+        background: radial-gradient(circle, #f59e0b, transparent 70%);
+        top: -220px;
+        right: -120px;
+      }
+
+      .aurora-2 {
+        width: 520px;
+        height: 520px;
+        background: radial-gradient(circle, #6366f1, transparent 70%);
+        bottom: -180px;
+        left: -140px;
+      }
+
+      .aurora-3 {
+        width: 380px;
+        height: 380px;
+        background: radial-gradient(circle, #fb7185, transparent 70%);
+        top: 42%;
+        left: 48%;
+        opacity: 0.12;
+      }
+
+      /* Container */
+      .container {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      /* Top Studio Navigation Bar */
+      .main-header {
         position: fixed;
         top: 0;
         left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(248, 249, 250, 0.8);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        z-index: 2000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.3s ease, visibility 0.3s;
-        padding: 20px;
-        overflow-y: auto;
-      }
-      .modal-overlay.show {
-        opacity: 1;
-        visibility: visible;
-      }
-      .close-modal-btn {
-        position: fixed;
-        top: 30px;
-        right: 40px;
-        background: 0 0;
-        border: none;
-        cursor: pointer;
-        font-size: 2.5rem;
-        color: var(--text-color);
-        z-index: 2001;
-      }
-      .menu-links {
-        list-style: none;
-        text-align: center;
-      }
-      .menu-links li a {
-        font-size: 2rem;
-        font-weight: 600;
-        color: var(--text-color);
-        text-decoration: none;
-        padding: 15px 0;
-        display: block;
-        transition: color 0.2s;
-      }
-      .menu-links li a:hover {
-        color: var(--subtle-text-color);
+        right: 0;
+        z-index: 1000;
+        padding: 16px 24px;
+        pointer-events: none;
       }
 
-      /* Page Switching & Content */
-      .page-content {
-        display: none;
-        opacity: 0;
-        transition: opacity 0.4s ease-in-out;
-      }
-      .page-content.active {
-        display: block;
-        opacity: 1;
-      }
-      .profile-page {
-        text-align: center;
-      }
-      .profile-avatar {
-        width: 140px;
-        height: 140px;
-        border-radius: 50%;
-        object-fit: cover;
-        margin: 20px auto;
-        border: 4px solid var(--card-bg-color);
-        box-shadow: 0 0 0 2px var(--border-color);
-      }
-      .profile-page h2 {
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 10px;
-      }
-      .profile-bio {
-        font-size: 1.1rem;
-        color: var(--subtle-text-color);
-        max-width: 600px;
-        margin: 0 auto 40px auto;
-      }
-      .profile-page h3 {
-        font-size: 1.5rem;
-        font-weight: 600;
-        margin-bottom: 20px;
-        margin-top: 40px;
-      }
-      .interest-tags {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 12px;
-        margin-bottom: 40px;
-      }
-      .interest-tag {
-        background-color: #f3f4f6;
-        color: #4b5563;
-        padding: 8px 16px;
-        border-radius: 999px;
-        font-weight: 500;
-        font-size: 0.9rem;
-        border: 1px solid var(--border-color);
-      }
-
-      /* General Sections & Cards */
-      .section {
-        background-color: var(--card-bg-color);
-        border: 1px solid var(--border-color);
-        border-radius: 16px;
-        padding: 30px;
-        margin-bottom: 25px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      }
-      .section-header {
-        display: flex;
-        align-items: center;
-        margin-bottom: 25px;
-      }
-      .section-dot {
-        width: 8px;
-        height: 8px;
-        background-color: var(--text-color);
-        border-radius: 50%;
-        margin-right: 12px;
-      }
-      .section-title {
-        font-size: 1.25rem;
-        font-weight: 600;
-      }
-      .view-all-link {
-        margin-left: auto;
-        color: var(--subtle-text-color);
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 14px;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        transition: color 0.2s;
-        cursor: pointer;
-      }
-      .view-all-link:hover {
-        color: var(--text-color);
-      }
-
-      /* Hero Section */
-      .hero-section {
+      .header-inner {
+        max-width: 1120px;
+        margin: 0 auto;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 30px;
-      }
-      .hero-text {
-        flex: 1;
-      }
-      .hero-text .role {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 15px;
-      }
-      .role-title {
-        color: rgb(11, 56, 201);
-        font-weight: 600;
-        font-size: 1rem;
-      }
-      .available-tag {
-        background-color: #d5c940;
-        color: #ffffff;
-        font-size: 12px;
-        font-weight: 600;
-        padding: 4px 10px;
-        border-radius: 999px;
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
-      }
-      .available-tag::before {
-        content: "";
-        width: 6px;
-        height: 6px;
-        background-color: var(--accent-color-available);
-        border-radius: 50%;
-      }
-      .hero-text h1 {
-        font-size: 2.8rem;
-        font-weight: 700;
-        margin-bottom: 10px;
-        line-height: 1.2;
-      }
-      .hero-text .subtitle {
-        font-size: 1.1rem;
-        color: var(--subtle-text-color);
-        margin-bottom: 25px;
-      }
-      .hero-avatar img {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 4px solid var(--card-bg-color);
-        box-shadow: 0 0 0 2px var(--border-color);
+        gap: 16px;
+        pointer-events: auto;
       }
 
-      /* Buttons */
-      .hero-buttons,
-      .cta-buttons {
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-      }
-      .btn {
-        padding: 12px 20px;
-        border-radius: 999px;
-        font-weight: 600;
-        cursor: pointer;
+      .brand-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 7px 16px 7px 8px;
+        background: var(--nav-bg);
+        backdrop-filter: blur(18px) saturate(160%);
+        -webkit-backdrop-filter: blur(18px) saturate(160%);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-pill);
         text-decoration: none;
+        color: var(--text-primary);
+        cursor: pointer;
+        transition: border-color 0.25s ease, transform 0.25s var(--ease);
+      }
+
+      .brand-pill:hover {
+        border-color: var(--border-hover);
+        transform: translateY(-1px);
+      }
+
+      .brand-avatar-mini {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 1.5px solid var(--accent-1);
+      }
+
+      .brand-mark {
+        font-weight: 700;
+        font-size: 0.92rem;
+        letter-spacing: 0.02em;
+      }
+
+      /* Center Segmented Nav Tabs */
+      .center-nav {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 5px;
+        background: var(--nav-bg);
+        backdrop-filter: blur(18px) saturate(160%);
+        -webkit-backdrop-filter: blur(18px) saturate(160%);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-pill);
+        box-shadow: 0 12px 32px -12px rgba(0, 0, 0, 0.35);
+      }
+
+      .nav-tab {
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        font-size: 14px;
-        border: 1px solid transparent;
-        transition: all 0.2s ease-in-out;
-      }
-      .btn:hover {
-        transform: scale(1.03) translateY(-2px);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
-      }
-      .btn-primary {
-        background-color: var(--primary-button-bg);
-        color: var(--primary-button-text);
-      }
-      .btn-primary:hover {
-        opacity: 0.9;
-      }
-      .btn-secondary {
-        background-color: var(--card-bg-color);
-        color: var(--text-color);
-        border: 1px solid var(--border-color);
-      }
-      .btn-secondary:hover {
-        border-color: #d1d5db;
-      }
-      .btn svg {
-        width: 16px;
-        height: 16px;
-      }
-
-      /* Projects Page / Grid */
-      .projects-page-header {
-        text-align: left;
-        margin-bottom: 30px;
-      }
-      .projects-page-header h2 {
-        font-size: 2.5rem;
-        font-weight: 700;
-      }
-      .projects-page-header p {
-        font-size: 1.1rem;
-        color: var(--subtle-text-color);
-        max-width: 600px;
-      }
-      .projects-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 20px;
-      }
-      .project-list {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-      }
-      .project-card {
-        display: flex;
-        align-items: center;
-        padding: 20px;
-        border: 1px solid var(--border-color);
-        border-radius: 12px;
+        padding: 9px 18px;
+        border-radius: var(--radius-pill);
+        color: var(--text-secondary);
+        font-family: inherit;
+        font-size: 0.88rem;
+        font-weight: 600;
         text-decoration: none;
-        color: var(--text-color);
-        transition: all 0.2s ease-in-out;
-      }
-      .project-card:hover {
-        border-color: #9ca3af;
-        transform: translateY(-4px);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.07);
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.28s var(--ease);
+        white-space: nowrap;
       }
 
-      /* UPDATED CSS FOR PROJECT LOGO */
-      .project-logo {
-        width: 50px;
-        height: 50px;
-        margin-right: 20px;
+      .nav-tab svg {
+        width: 17px;
+        height: 17px;
         flex-shrink: 0;
       }
-      .project-logo img {
+
+      .nav-tab:hover {
+        color: var(--text-primary);
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      [data-theme="light"] .nav-tab:hover {
+        background: rgba(0, 0, 0, 0.05);
+      }
+
+      .nav-tab.active-nav {
+        background: var(--nav-active-bg);
+        color: var(--nav-active-text);
+        box-shadow: 0 6px 18px -6px rgba(0, 0, 0, 0.35);
+      }
+
+      /* Right Action Cluster */
+      .header-controls {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 5px;
+        background: var(--nav-bg);
+        backdrop-filter: blur(18px) saturate(160%);
+        -webkit-backdrop-filter: blur(18px) saturate(160%);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-pill);
+      }
+
+      .icon-ctrl-btn {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        border: none;
+        background: transparent;
+        color: var(--text-secondary);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.25s var(--ease);
+      }
+
+      .icon-ctrl-btn:hover {
+        color: var(--text-primary);
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      [data-theme="light"] .icon-ctrl-btn:hover {
+        background: rgba(0, 0, 0, 0.06);
+      }
+
+      .icon-ctrl-btn svg {
+        width: 19px;
+        height: 19px;
+      }
+
+      .language-switcher {
+        padding: 9px 16px;
+        border-radius: var(--radius-pill);
+        border: none;
+        background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+        color: #ffffff;
+        font-family: inherit;
+        font-size: 0.84rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.25s var(--ease);
+        box-shadow: 0 6px 18px -6px rgba(245, 158, 11, 0.55);
+      }
+
+      .language-switcher:hover {
+        transform: translateY(-1px) scale(1.02);
+        box-shadow: 0 10px 22px -6px rgba(245, 158, 11, 0.65);
+      }
+
+      /* Page Transitions */
+      .page-content {
+        display: none;
+      }
+
+      .page-content.active {
+        display: block;
+        animation: studioReveal 0.5s var(--ease) forwards;
+      }
+
+      @keyframes studioReveal {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Universal Bento Card with Mouse Spotlight */
+      .bento-card {
+        position: relative;
+        background: var(--surface);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-bento);
+        box-shadow: var(--shadow-card);
+        overflow: hidden;
+        transition: border-color 0.3s ease, transform 0.35s var(--ease), background-color 0.35s ease;
+      }
+
+      .bento-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          520px circle at var(--mx, 50%) var(--my, 50%),
+          var(--spotlight),
+          transparent 48%
+        );
+        opacity: 0;
+        transition: opacity 0.35s ease;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .bento-card:hover::before {
+        opacity: 1;
+      }
+
+      .bento-card:hover {
+        border-color: var(--border-hover);
+      }
+
+      .bento-card > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* ===== HOME BENTO GRID ===== */
+      .home-bento-top {
+        display: grid;
+        grid-template-columns: 1.45fr 1fr;
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+
+      .hero-bento {
+        padding: 42px 38px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 410px;
+      }
+
+      .hero-top-meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 28px;
+      }
+
+      .location-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        padding: 7px 14px;
+        border-radius: var(--radius-pill);
+        background: rgba(16, 185, 129, 0.1);
+        border: 1px solid rgba(16, 185, 129, 0.25);
+        color: #34d399;
+        font-size: 0.84rem;
+        font-weight: 600;
+      }
+
+      [data-theme="light"] .location-chip {
+        color: #047857;
+        background: #ecfdf5;
+        border-color: #a7f3d0;
+      }
+
+      .live-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #10b981;
+        box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.25);
+        animation: pulseLive 2.2s infinite;
+      }
+
+      @keyframes pulseLive {
+        0%, 100% { box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.3); }
+        50% { box-shadow: 0 0 0 7px rgba(16, 185, 129, 0); }
+      }
+
+      .greeting-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 7px 15px;
+        border-radius: var(--radius-pill);
+        background: var(--accent-pill-bg);
+        border: 1px solid var(--accent-pill-border);
+        color: var(--accent-pill-text);
+        font-size: 0.86rem;
+        font-weight: 700;
+      }
+
+      .hero-bento h1 {
+        font-size: clamp(2.35rem, 5vw, 3.65rem);
+        font-weight: 700;
+        line-height: 1.12;
+        letter-spacing: -0.035em;
+        margin-bottom: 24px;
+      }
+
+      .hero-bento h1 span,
+      .hero-bento h1 {
+        background: linear-gradient(135deg, var(--text-primary) 40%, var(--accent-1) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: auto;
+        padding-top: 12px;
+      }
+
+      /* Right Stack in Hero Bento */
+      .hero-right-stack {
+        display: grid;
+        grid-template-rows: 1fr auto;
+        gap: 20px;
+      }
+
+      .portrait-bento {
+        min-height: 270px;
+        padding: 0;
+        display: flex;
+        align-items: flex-end;
+      }
+
+      .portrait-bento img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 20%;
+        transition: transform 0.65s var(--ease);
+        z-index: 0;
+      }
+
+      .portrait-bento:hover img {
+        transform: scale(1.05);
+      }
+
+      .portrait-overlay {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        padding: 48px 22px 20px;
+        background: linear-gradient(to top, rgba(7, 8, 13, 0.88) 0%, rgba(7, 8, 13, 0.25) 55%, transparent 100%);
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .portrait-caption {
+        color: #ffffff;
+        font-weight: 700;
+        font-size: 0.95rem;
+        letter-spacing: 0.01em;
+      }
+
+      .portrait-tag {
+        padding: 5px 11px;
+        border-radius: var(--radius-pill);
+        background: rgba(255, 255, 255, 0.16);
+        backdrop-filter: blur(10px);
+        color: #ffffff;
+        font-size: 0.78rem;
+        font-weight: 600;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+      }
+
+      /* Social Bento Strip */
+      .social-bento {
+        padding: 18px 20px;
+      }
+
+      .social-bento-label {
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--text-muted);
+        margin-bottom: 12px;
+      }
+
+      .social-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+      }
+
+      .social-tile {
+        height: 52px;
+        border-radius: 16px;
+        background: var(--btn-secondary-bg);
+        border: 1px solid var(--border-subtle);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-primary);
+        text-decoration: none;
+        transition: all 0.28s var(--ease);
+      }
+
+      .social-tile svg {
+        width: 21px;
+        height: 21px;
+      }
+
+      .social-tile:hover {
+        transform: translateY(-4px);
+        color: #ffffff;
+        border-color: transparent;
+      }
+
+      .social-tile[aria-label="YouTube"]:hover {
+        background: #ef4444;
+        box-shadow: 0 12px 24px -6px rgba(239, 68, 68, 0.55);
+      }
+
+      .social-tile[aria-label="X / Twitter"]:hover {
+        background: #000000;
+        box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.55);
+      }
+
+      .social-tile[aria-label="Instagram"]:hover {
+        background: linear-gradient(135deg, #f59e0b, #ec4899, #8b5cf6);
+        box-shadow: 0 12px 24px -6px rgba(236, 72, 153, 0.55);
+      }
+
+      .social-tile[aria-label="GitHub"]:hover {
+        background: #334155;
+        box-shadow: 0 12px 24px -6px rgba(51, 65, 85, 0.55);
+      }
+
+      /* Buttons */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        padding: 13px 24px;
+        border-radius: var(--radius-pill);
+        font-family: inherit;
+        font-size: 0.92rem;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+        border: 1px solid transparent;
+        transition: all 0.28s var(--ease);
+      }
+
+      .btn svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      .btn-primary {
+        background: var(--btn-primary-bg);
+        color: var(--btn-primary-text);
+        box-shadow: 0 10px 26px -8px rgba(0, 0, 0, 0.35);
+      }
+
+      .btn-primary:hover {
+        background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+        color: #ffffff;
+        transform: translateY(-2px);
+        box-shadow: 0 14px 30px -8px rgba(245, 158, 11, 0.55);
+      }
+
+      .btn-secondary {
+        background: var(--btn-secondary-bg);
+        color: var(--btn-secondary-text);
+        border-color: var(--border-subtle);
+      }
+
+      .btn-secondary:hover {
+        border-color: var(--border-hover);
+        transform: translateY(-2px);
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      [data-theme="light"] .btn-secondary:hover {
+        background: #ffffff;
+        box-shadow: 0 8px 20px -8px rgba(0, 0, 0, 0.12);
+      }
+
+      /* ===== PROJECTS SHOWCASE (APP-STORE STYLE CARDS) ===== */
+      .showcase-block {
+        margin-bottom: 20px;
+      }
+
+      .block-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 18px;
+        padding: 0 4px;
+      }
+
+      .block-title-wrap {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .block-title {
+        font-size: clamp(1.45rem, 3vw, 1.9rem);
+        font-weight: 700;
+        letter-spacing: -0.025em;
+      }
+
+      .block-count {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 0.8rem;
+        font-weight: 700;
+        padding: 4px 11px;
+        border-radius: var(--radius-pill);
+        background: var(--accent-pill-bg);
+        border: 1px solid var(--accent-pill-border);
+        color: var(--accent-pill-text);
+      }
+
+      .view-all-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 18px;
+        border-radius: var(--radius-pill);
+        background: var(--surface);
+        border: 1px solid var(--border-subtle);
+        color: var(--text-primary);
+        font-size: 0.86rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.25s var(--ease);
+      }
+
+      .view-all-link:hover {
+        border-color: var(--accent-1);
+        color: var(--accent-1);
+        transform: translateX(3px);
+      }
+
+      .home-projects-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+      }
+
+      .all-projects-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+      }
+
+      .app-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 24px;
+        min-height: 220px;
+        text-decoration: none;
+        color: var(--text-primary);
+        border-radius: var(--radius-card);
+        animation: cardPop 0.45s var(--ease) both;
+      }
+
+      @keyframes cardPop {
+        from {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .app-card:hover {
+        transform: translateY(-6px);
+      }
+
+      .app-card-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-bottom: 24px;
+      }
+
+      .app-icon-shell {
+        position: relative;
+        width: 62px;
+        height: 62px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.95);
+        padding: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 12px 26px -8px rgba(0, 0, 0, 0.35);
+        transition: transform 0.35s var(--ease);
+      }
+
+      .app-card:hover .app-icon-shell {
+        transform: scale(1.08) rotate(-2deg);
+      }
+
+      .app-icon-shell img {
         width: 100%;
         height: 100%;
         object-fit: contain;
         border-radius: 10px;
       }
 
-      .project-info h3 {
-        font-size: 1.1rem;
-        font-weight: 600;
-        margin-bottom: 2px;
-      }
-      .project-info p {
-        color: var(--subtle-text-color);
-        font-size: 0.9rem;
-      }
-      .project-card-arrow {
-        margin-left: auto;
-        color: var(--subtle-text-color);
-        transition: transform 0.2s;
-      }
-      .project-card:hover .project-card-arrow {
-        transform: translateX(3px);
+      .app-card-meta {
+        display: flex;
+        align-items: center;
+        gap: 8px;
       }
 
-      /* CTA & Social */
-      .cta-section {
-        text-align: center;
-      }
-      .cta-section h2 {
-        font-size: 2.5rem;
+      .card-index {
+        font-size: 0.78rem;
         font-weight: 700;
+        color: var(--text-muted);
+      }
+
+      .app-launch-arrow {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: var(--btn-secondary-bg);
+        border: 1px solid var(--border-subtle);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-secondary);
+        font-size: 1rem;
+        transition: all 0.28s var(--ease);
+      }
+
+      .app-card:hover .app-launch-arrow {
+        background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+        border-color: transparent;
+        color: #ffffff;
+        transform: translate(2px, -2px);
+      }
+
+      .app-card-body h3 {
+        font-size: 1.18rem;
+        font-weight: 700;
+        letter-spacing: -0.015em;
+        margin-bottom: 6px;
+        color: var(--text-primary);
+      }
+
+      .app-card-body p {
+        font-size: 0.89rem;
+        color: var(--text-secondary);
+        line-height: 1.55;
+      }
+
+      /* ===== HORIZONTAL SPOTLIGHT CTA BANNER ===== */
+      .cta-bento {
+        padding: 40px 42px;
+        background:
+          radial-gradient(circle at 92% 15%, rgba(245, 158, 11, 0.28), transparent 45%),
+          radial-gradient(circle at 8% 95%, rgba(99, 102, 241, 0.26), transparent 45%),
+          var(--surface-elevated);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 32px;
+      }
+
+      .cta-copy {
+        max-width: 560px;
+      }
+
+      .cta-copy h2 {
+        font-size: clamp(1.75rem, 3.6vw, 2.45rem);
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        line-height: 1.15;
         margin-bottom: 10px;
       }
-      .cta-section p {
-        font-size: 1.1rem;
-        color: var(--subtle-text-color);
-        margin-bottom: 30px;
-        max-width: 450px;
-        margin: 0 auto 30px auto;
+
+      .cta-copy p {
+        font-size: 1.02rem;
+        color: var(--text-secondary);
       }
-      .social-links {
+
+      .cta-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        flex-shrink: 0;
+      }
+
+      /* ===== ABOUT / PROFILE 2-COLUMN EDITORIAL LAYOUT ===== */
+      .about-grid {
+        display: grid;
+        grid-template-columns: 350px 1fr;
+        gap: 20px;
+        align-items: start;
+      }
+
+      .about-sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        position: sticky;
+        top: 96px;
+      }
+
+      .about-photo-card {
+        aspect-ratio: 4 / 4.4;
+        padding: 0;
+      }
+
+      .about-photo-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .about-side-card {
+        padding: 24px;
+      }
+
+      .about-side-card h3 {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--text-muted);
+        margin-bottom: 14px;
+      }
+
+      .interest-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .interest-tag {
+        padding: 8px 14px;
+        border-radius: var(--radius-pill);
+        background: var(--btn-secondary-bg);
+        border: 1px solid var(--border-subtle);
+        color: var(--text-primary);
+        font-size: 0.86rem;
+        font-weight: 600;
+        transition: all 0.25s var(--ease);
+      }
+
+      .interest-tag:hover {
+        border-color: var(--accent-1);
+        color: var(--accent-pill-text);
+        transform: translateY(-2px);
+      }
+
+      .about-main {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .about-story-card {
+        padding: 38px;
+      }
+
+      .about-story-card h2 {
+        font-size: clamp(1.9rem, 4vw, 2.6rem);
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        margin-bottom: 20px;
+        background: linear-gradient(135deg, var(--text-primary) 45%, var(--accent-1) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .profile-bio {
+        font-size: 1.08rem;
+        line-height: 1.9;
+        color: var(--text-secondary);
+      }
+
+      .profile-bio b {
+        color: var(--text-primary);
+      }
+
+      .profile-bio i {
+        display: inline-block;
+        margin-top: 18px;
+        font-style: normal;
+        font-weight: 700;
+        color: var(--accent-pill-text);
+        background: var(--accent-pill-bg);
+        border: 1px solid var(--accent-pill-border);
+        padding: 6px 16px;
+        border-radius: var(--radius-pill);
+      }
+
+      .lifestyle-card {
+        padding: 32px;
+      }
+
+      .instagram-frame {
+        margin-top: 18px;
+        padding: 14px;
+        background: #ffffff;
+        border-radius: 20px;
         display: flex;
         justify-content: center;
-        gap: 15px;
+        overflow: hidden;
       }
-      .social-link {
-        width: 44px;
-        height: 44px;
-        border: 1px solid var(--border-color);
+
+      /* ===== PROJECTS PAGE HEADER ===== */
+      .projects-hero-banner {
+        padding: 34px 36px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .projects-hero-banner h2 {
+        font-size: clamp(2rem, 4.5vw, 2.85rem);
+        font-weight: 700;
+        letter-spacing: -0.035em;
+        background: linear-gradient(135deg, var(--text-primary) 45%, var(--accent-1) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* ===== RIGHT-SIDE SLIDE-OVER MENU DRAWER ===== */
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(5, 6, 10, 0.62);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        z-index: 2000;
+        display: flex;
+        justify-content: flex-end;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+
+      .modal-overlay.show {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .menu-drawer {
+        width: 100%;
+        max-width: 420px;
+        height: 100%;
+        background: var(--surface-solid);
+        border-left: 1px solid var(--border-subtle);
+        padding: 32px 28px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transform: translateX(100%);
+        transition: transform 0.42s var(--ease);
+        box-shadow: -24px 0 60px rgba(0, 0, 0, 0.45);
+      }
+
+      .modal-overlay.show .menu-drawer {
+        transform: translateX(0);
+      }
+
+      .drawer-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--border-subtle);
+      }
+
+      .drawer-brand {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+        font-size: 1.05rem;
+        letter-spacing: 0.04em;
+        color: var(--accent-1);
+      }
+
+      .close-modal-btn {
+        width: 42px;
+        height: 42px;
         border-radius: 50%;
+        border: 1px solid var(--border-subtle);
+        background: var(--btn-secondary-bg);
+        color: var(--text-primary);
+        font-size: 1.5rem;
+        cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: var(--subtle-text-color);
-        transition: all 0.2s ease-in-out;
-      }
-      .social-link:hover {
-        color: var(--text-color);
-        border-color: #9ca3af;
-        transform: translateY(-2px);
-        background-color: #f9fafb;
-      }
-      .social-link svg {
-        width: 20px;
-        height: 20px;
+        transition: all 0.25s var(--ease);
       }
 
-      /* Footer & Responsive */
-      footer {
-        text-align: center;
-        padding: 30px 20px;
-        font-size: 0.9rem;
-        color: var(--subtle-text-color);
+      .close-modal-btn:hover {
+        background: var(--accent-1);
+        color: #ffffff;
+        border-color: transparent;
+        transform: rotate(90deg);
       }
-      footer a {
-        color: var(--text-color);
+
+      .menu-links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin: auto 0;
+        padding: 20px 0;
+      }
+
+      .menu-links li a {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 16px 14px;
+        border-radius: 16px;
         text-decoration: none;
-        font-weight: 500;
-      }
-      footer a:hover {
-        text-decoration: underline;
+        color: var(--text-primary);
+        font-family: "Space Grotesk", "Noto Sans Oriya", sans-serif;
+        font-size: 1.45rem;
+        font-weight: 700;
+        transition: all 0.25s var(--ease);
       }
 
-      /* Floating Share Button Style */
+      .menu-links li a .menu-num {
+        font-size: 0.82rem;
+        color: var(--accent-1);
+        font-weight: 700;
+        opacity: 0.85;
+      }
+
+      .menu-links li a:hover {
+        background: var(--btn-secondary-bg);
+        color: var(--accent-1);
+        transform: translateX(8px);
+      }
+
+      .drawer-footer {
+        padding-top: 18px;
+        border-top: 1px solid var(--border-subtle);
+        font-size: 0.85rem;
+        color: var(--text-muted);
+      }
+
+      /* Footer */
+      footer {
+        margin-top: 34px;
+        text-align: center;
+        font-size: 0.88rem;
+        color: var(--text-muted);
+        padding: 18px 10px;
+      }
+
+      /* Floating Share FAB */
       #floating-share-btn {
         position: fixed;
-        bottom: 25px;
-        right: 25px;
-        width: 56px;
-        height: 56px;
-        background-color: var(--primary-button-bg);
-        color: var(--primary-button-text);
-        border: none;
+        bottom: 26px;
+        right: 26px;
+        width: 54px;
+        height: 54px;
         border-radius: 50%;
+        border: 1px solid var(--border-subtle);
+        background: var(--nav-bg);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        color: var(--text-primary);
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         cursor: pointer;
         z-index: 999;
-        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-      }
-      #floating-share-btn:hover {
-        transform: scale(1.05);
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-      }
-      #floating-share-btn svg {
-        width: 24px;
-        height: 24px;
+        box-shadow: 0 14px 32px -6px rgba(0, 0, 0, 0.45);
+        transition: all 0.3s var(--ease);
       }
 
-      @media (max-width: 768px) {
-        .hero-section {
-          flex-direction: column-reverse;
-          text-align: center;
+      #floating-share-btn:hover {
+        background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+        color: #ffffff;
+        border-color: transparent;
+        transform: translateY(-4px) scale(1.05);
+      }
+
+      #floating-share-btn svg {
+        width: 22px;
+        height: 22px;
+      }
+
+      /* Toast Notification */
+      .toast-notification {
+        position: fixed;
+        bottom: 28px;
+        left: 50%;
+        transform: translateX(-50%) translateY(20px);
+        background: var(--nav-active-bg);
+        color: var(--nav-active-text);
+        padding: 11px 22px;
+        border-radius: var(--radius-pill);
+        font-size: 0.88rem;
+        font-weight: 700;
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        box-shadow: 0 18px 36px -10px rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s var(--ease);
+        z-index: 3000;
+        white-space: nowrap;
+      }
+
+      .toast-notification.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      .toast-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #10b981;
+      }
+
+      /* ===== RESPONSIVE BREAKPOINTS ===== */
+      @media (max-width: 960px) {
+        .home-bento-top {
+          grid-template-columns: 1fr;
         }
-        .hero-text .role,
-        .hero-buttons,
+
+        .hero-bento {
+          min-height: auto;
+        }
+
+        .hero-right-stack {
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: auto;
+        }
+
+        .portrait-bento {
+          min-height: 240px;
+        }
+
+        .home-projects-grid,
+        .all-projects-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .cta-bento {
+          flex-direction: column;
+          text-align: center;
+          padding: 36px 28px;
+        }
+
         .cta-buttons {
           justify-content: center;
         }
-        .hero-avatar img {
-          width: 120px;
-          height: 120px;
-        }
-        .hero-text h1,
-        .profile-page h2,
-        .projects-page-header h2 {
-          font-size: 2.2rem;
-        }
-        .cta-section h2 {
-          font-size: 2rem;
-        }
-        .projects-grid {
+
+        .about-grid {
           grid-template-columns: 1fr;
+        }
+
+        .about-sidebar {
+          position: static;
+        }
+
+        .about-photo-card {
+          max-width: 360px;
+          margin: 0 auto;
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 720px) {
+        body {
+          padding-top: 84px;
+          padding-bottom: 108px;
+        }
+
+        .container {
+          padding: 0 16px;
+        }
+
+        .main-header {
+          padding: 12px 16px;
+        }
+
+        /* Transform Center Nav into Floating Bottom Thumb Dock on Mobile */
+        .center-nav {
+          position: fixed;
+          bottom: 16px;
+          left: 50%;
+          transform: translateX(-50%);
+          z-index: 1050;
+          padding: 6px;
+          width: calc(100% - 32px);
+          max-width: 400px;
+          justify-content: space-between;
+          box-shadow: 0 18px 40px -8px rgba(0, 0, 0, 0.6);
+        }
+
+        .nav-tab {
+          flex: 1;
+          justify-content: center;
+          padding: 10px 10px;
+          font-size: 0.82rem;
+          gap: 6px;
+        }
+
+        .hero-bento {
+          padding: 28px 22px;
+        }
+
+        .hero-right-stack {
+          grid-template-columns: 1fr;
+        }
+
+        .home-projects-grid,
+        .all-projects-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .about-story-card,
+        .lifestyle-card,
+        .projects-hero-banner {
+          padding: 24px 20px;
+        }
+
+        #floating-share-btn {
+          bottom: 86px;
+          right: 16px;
+          width: 48px;
+          height: 48px;
+        }
+
+        .toast-notification {
+          bottom: 92px;
+        }
+      }
+
+      @media (max-width: 460px) {
+        .brand-mark {
+          display: none;
+        }
+
+        .brand-pill {
+          padding: 6px;
+        }
+
+        .hero-actions .btn,
+        .cta-buttons .btn {
+          width: 100%;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation-duration: 0.01ms !important;
+          transition-duration: 0.01ms !important;
         }
       }
     </style>
   </head>
   <body>
-    <!-- Header -->
+    <!-- Ambient Aurora Background -->
+    <div class="aurora-layer" aria-hidden="true">
+      <div class="aurora-blob aurora-1"></div>
+      <div class="aurora-blob aurora-2"></div>
+      <div class="aurora-blob aurora-3"></div>
+    </div>
+
+    <!-- Top Studio Header + Mobile Floating Dock -->
     <header class="main-header">
-      <div class="header-content">
-        <div class="nav-left">
-          <div class="nav-icons">
-            <a href="http://127.0.0.1:3000/demoss/sbg/sbg.html?od#ଘର" id="home-nav-btn" title="Home"
-              ><svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
-                /></svg
-            ></a>
-            <button id="profile-btn" title="Profile">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-                />
-              </svg>
-            </button>
-            <button id="projects-nav-btn" title="Projects">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-        <div class="nav-right">
-          <div class="nav-icons">
-            <button id="menu-btn" title="Menu">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                />
-              </svg>
-            </button>
-          </div>
+      <div class="header-inner">
+        <a href="http://127.0.0.1:3000/demoss/sbg/sbg.html?od#ଘର" id="brand-home-link" class="brand-pill" aria-label="Sandeep Biswal G">
+          <img
+            src="https://imsbg.github.io/images/sandeep-biswal-g/sandeep.jpg"
+            alt="Sandeep Biswal G"
+            class="brand-avatar-mini"
+          />
+          <span class="brand-mark">SBG</span>
+        </a>
+
+        <nav class="center-nav" aria-label="Primary Navigation">
+          <a
+            href="http://127.0.0.1:3000/demoss/sbg/sbg.html?od#ଘର"
+            id="home-nav-btn"
+            class="nav-tab active-nav"
+            title="Home"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+            </svg>
+            <span data-lang-en="Home" data-lang-or="ହୋମ୍">ହୋମ୍</span>
+          </a>
+
+          <button id="profile-btn" class="nav-tab" title="Profile">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+            </svg>
+            <span data-lang-en="About" data-lang-or="ମୋ ବିଷୟରେ">ମୋ ବିଷୟରେ</span>
+          </button>
+
+          <button id="projects-nav-btn" class="nav-tab" title="Projects">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" />
+            </svg>
+            <span data-lang-en="Projects" data-lang-or="ପ୍ରୋଜେକ୍ଟସ୍">ପ୍ରୋଜେକ୍ଟସ୍</span>
+          </button>
+        </nav>
+
+        <div class="header-controls">
+          <button id="theme-toggle-btn" class="icon-ctrl-btn" title="Switch Theme" aria-label="Switch Theme">
+            <svg id="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+            </svg>
+            <svg id="theme-icon-moon" style="display:none;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+            </svg>
+          </button>
+
+          <button id="menu-btn" class="icon-ctrl-btn" title="Menu" aria-label="Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+          </button>
+
           <button
             id="language-switcher"
             class="language-switcher"
@@ -695,7 +1476,7 @@
       </div>
     </header>
 
-    <!-- Menu Modal -->
+    <!-- Slide-Over Menu Drawer -->
     <div id="menu-overlay" class="modal-overlay"></div>
 
     <div class="container">
@@ -714,12 +1495,17 @@
     </div>
 
     <!-- Floating Share Button -->
-    <button id="floating-share-btn" title="Share Page">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.186 2.25 2.25 0 0 0-3.933 2.186Z" />
-        </svg>
+    <button id="floating-share-btn" title="Share Page" aria-label="Share Page">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.186 2.25 2.25 0 0 0-3.933 2.186Z" />
+      </svg>
     </button>
 
+    <!-- Toast Notification -->
+    <div id="toast" class="toast-notification" role="status" aria-live="polite">
+      <span class="toast-dot"></span>
+      <span id="toast-message"></span>
+    </div>
 
     <!-- Instagram's official embed script. Must be loaded for the embed to work. -->
     <script async src="//www.instagram.com/embed.js"></script>
@@ -761,7 +1547,7 @@
           link: "https://imsbg.github.io/Atomic-Guru/",
           imageUrl: "https://imsbg.github.io/Atomic-Guru//images/logo.png",
         },
-                  {
+        {
           name_en: "Odisha Bus",
           name_or: "ଓଡ଼ିଶା ବସ୍",
           desc_en: "Track Every Odisha Bus Live",
@@ -801,7 +1587,7 @@
           link: "https://imsbg.github.io/SBTEXTO/?od",
           imageUrl: "https://imsbg.github.io/SBTEXTO/logo.png",
         },
-                {
+        {
           name_en: "Tiger and Goat",
           name_or: "ବାଘ ଛେଳି",
           desc_en: "Play with AI, friends in one phone or play online",
@@ -809,7 +1595,7 @@
           link: "https://baghachheli.netlify.app/",
           imageUrl: "https://imsbg.github.io/bagha-chheli/logo.svg",
         },
-          {
+        {
           name_en: "Bingo - 1 to 25",
           name_or: "ବିଙ୍ଗୋ - ୧ ରୁ ୨୫",
           desc_en: "Play with AI, friends in one phone or play online",
@@ -817,7 +1603,7 @@
           link: "https://baghachheli.netlify.app/",
           imageUrl: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='none'%3E%3Crect width='32' height='32' rx='8' fill='%234F46E5'/%3E%3Crect x='5' y='5' width='9' height='9' rx='2.5' fill='%2310B981'/%3E%3Crect x='18' y='5' width='9' height='9' rx='2.5' fill='%23F43F5E'/%3E%3Crect x='5' y='18' width='9' height='9' rx='2.5' fill='%23F59E0B'/%3E%3Crect x='18' y='18' width='9' height='9' rx='2.5' fill='%2338BDF8'/%3E%3Cpath d='M5 5L27 27' stroke='white' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E",
         },
-          {
+        {
           name_en: "Desi Checkers",
           name_or: "ଦେଶୀ ଚେକର୍ସ",
           desc_en: "Play with AI, friends in one phone or play online",
@@ -825,7 +1611,7 @@
           link: "https://desicheckers.netlify.app/",
           imageUrl: "https://desicheckers.netlify.app/logo.svg",
         },
-          {
+        {
           name_en: "Tic Tac Toe",
           name_or: "ଛକି ଶୂନ",
           desc_en: "Play with AI, friends in one phone or play online",
@@ -838,79 +1624,190 @@
       // --- HTML GENERATORS ---
       function generateProjectHTML(projects) {
         return projects
-          .map(
-            (project) => `
-                <a href="${project.link}" target="_blank" rel="noopener noreferrer" class="project-card">
-                    <div class="project-logo"><img src="${project.imageUrl}" alt="Logo for ${project.name_en} project" width="50" height="50" loading="lazy"></div>
-                    <div class="project-info">
-                        <h3 data-lang-en="${project.name_en}" data-lang-or="${project.name_or}">${project.name_or}</h3>
-                        <p data-lang-en="${project.desc_en}" data-lang-or="${project.desc_or}">${project.desc_or}</p>
-                    </div>
-                    <span class="project-card-arrow">&rarr;</span>
-                </a>`
-          )
+          .map((project, idx) => {
+            const num = String(idx + 1).padStart(2, "0");
+            return `
+              <a href="${project.link}" target="_blank" rel="noopener noreferrer" class="bento-card app-card" style="animation-delay: ${Math.min(idx * 45, 450)}ms">
+                <div class="app-card-top">
+                  <div class="app-icon-shell">
+                    <img src="${project.imageUrl}" alt="Logo for ${project.name_en} project" width="50" height="50" loading="lazy">
+                  </div>
+                  <div class="app-card-meta">
+                    <span class="card-index">${num}</span>
+                    <span class="app-launch-arrow" aria-hidden="true">↗</span>
+                  </div>
+                </div>
+                <div class="app-card-body">
+                  <h3 data-lang-en="${project.name_en}" data-lang-or="${project.name_or}">${project.name_or}</h3>
+                  <p data-lang-en="${project.desc_en}" data-lang-or="${project.desc_or}">${project.desc_or}</p>
+                </div>
+              </a>`;
+          })
           .join("");
       }
 
       const allProjectsHTML = generateProjectHTML(projectsData);
       const homeProjectsHTML = generateProjectHTML(projectsData.slice(0, 3));
 
-      const socialLinksHTML = `
-            <div class="social-links" style="margin-top: 25px;">
-                <a href="https://youtube.com/@SandeepBiswalG" class="social-link" aria-label="YouTube"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M21.582,6.186c-0.23-0.86-0.908-1.538-1.768-1.768C18.25,4,12,4,12,4S5.75,4,4.186,4.418 c-0.86,0.23-1.538,0.908-1.768,1.768C2,7.75,2,12,2,12s0,4.25,0.418,5.814c0.23,0.86,0.908,1.538,1.768,1.768 C5.75,20,12,20,12,20s6.25,0,7.814-0.418c0.861-0.23,1.538-0.908,1.768-1.768C22,16.25,22,12,22,12S22,7.75,21.582,6.186z M10,15.464V8.536L16,12L10,15.464z"/></svg></a>
-                <a href="https://x.com/sandeepbiswalg" class="social-link" aria-label="X / Twitter"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-                <a href="https://www.instagram.com/sandeepbiswalg" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.584.069-4.85c.149-3.225 1.664-4.771 4.919-4.919C8.418 2.175 8.79 2.163 12 2.163m0-2.163C8.74.001 8.333.012 7.053.072 2.695.272.273 2.69.073 7.052.013 8.333 0 8.74 0 12s.013 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98C8.333 23.988 8.74 24 12 24s3.667-.013 4.947-.072c4.354-.2 6.782-2.618 6.979-6.98.06-1.28.073-1.687.073-4.947s-.013-3.667-.072-4.947C21.728 2.69 19.306.273 14.947.073 13.667.013 13.26 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg></a>
-                <a href="https://github.com/imsbg" class="social-link" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2A10,10,0,0,0,2,12c0,4.42,2.87,8.17,6.84,9.5.5.09.68-.22.68-.48s0-.85,0-1.65c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61,1,.07,1.53,1.03,1.53,1.03.89,1.53,2.34,1.09,2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95,0-1.1.39-2,1.03-2.7-.1-.25-.45-1.28.1-2.67,0,0,.84-.27,2.75,1.02A9.56,9.56,0,0,1,12,6.84c.85,0,1.7.11,2.5.33,1.91-1.29,2.75-1.02,2.75-1.02.55,1.39.2,2.42.1,2.67.64.7,1.03,1.6,1.03,2.7,0,3.85-2.34,4.7-4.57,4.95.36.31.68.92.68,1.85,0,1.34,0,2.42,0,2.75,0,.27.18.58.69.48A10,10,0,0,0,22,12C22,6.48,17.52,2,12,2Z"/></svg></a>
-            </div>`;
+      const socialGridHTML = `
+        <div class="social-grid">
+          <a href="https://youtube.com/@SandeepBiswalG" target="_blank" rel="noopener noreferrer" class="social-tile" aria-label="YouTube"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M21.582,6.186c-0.23-0.86-0.908-1.538-1.768-1.768C18.25,4,12,4,12,4S5.75,4,4.186,4.418 c-0.86,0.23-1.538,0.908-1.768,1.768C2,7.75,2,12,2,12s0,4.25,0.418,5.814c0.23,0.86,0.908,1.538,1.768,1.768 C5.75,20,12,20,12,20s6.25,0,7.814-0.418c0.861-0.23,1.538-0.908,1.768-1.768C22,16.25,22,12,22,12S22,7.75,21.582,6.186z M10,15.464V8.536L16,12L10,15.464z"/></svg></a>
+          <a href="https://x.com/sandeepbiswalg" target="_blank" rel="noopener noreferrer" class="social-tile" aria-label="X / Twitter"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.instagram.com/sandeepbiswalg" target="_blank" rel="noopener noreferrer" class="social-tile" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.584.069-4.85c.149-3.225 1.664-4.771 4.919-4.919C8.418 2.175 8.79 2.163 12 2.163m0-2.163C8.74.001 8.333.012 7.053.072 2.695.272.273 2.69.073 7.052.013 8.333 0 8.74 0 12s.013 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98C8.333 23.988 8.74 24 12 24s3.667-.013 4.947-.072c4.354-.2 6.782-2.618 6.979-6.98.06-1.28.073-1.687.073-4.947s-.013-3.667-.072-4.947C21.728 2.69 19.306.273 14.947.073 13.667.013 13.26 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg></a>
+          <a href="https://github.com/imsbg" target="_blank" rel="noopener noreferrer" class="social-tile" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2A10,10,0,0,0,2,12c0,4.42,2.87,8.17,6.84,9.5.5.09.68-.22.68-.48s0-.85,0-1.65c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61,1,.07,1.53,1.03,1.53,1.03.89,1.53,2.34,1.09,2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95,0-1.1.39-2,1.03-2.7-.1-.25-.45-1.28.1-2.67,0,0,.84-.27,2.75,1.02A9.56,9.56,0,0,1,12,6.84c.85,0,1.7.11,2.5.33,1.91-1.29,2.75-1.02,2.75-1.02.55,1.39.2,2.42.1,2.67.64.7,1.03,1.6,1.03,2.7,0,3.85-2.34,4.7-4.57,4.95.36.31.68.92.68,1.85,0,1.34,0,2.42,0,2.75,0,.27.18.58.69.48A10,10,0,0,0,22,12C22,6.48,17.52,2,12,2Z"/></svg></a>
+        </div>`;
 
       // --- PAGE & MODAL POPULATION ---
       function populateContent() {
-        // Home Page
+        // HOME PAGE (Asymmetric Bento Grid)
         document.getElementById("home-content").innerHTML = `
-                <section class="section"> <div class="hero-section"><div class="hero-text"><div class="role"><span class="role-dot"></span><span class="role-title" data-lang-en="Dhenkanal, Odisha" data-lang-or="ଢେଙ୍କାନାଳ, ଓଡ଼ିଶା"></span></div><h1 data-lang-en="I'm Sandeep Biswal G" data-lang-or="ମୁଁ ସନ୍ଦୀପ୍ ବିଶ୍ଵାଳ ଜି"></h1><p class="subtitle" data-lang-en="Jay Jagannath" data-lang-or="ଜୟ ଜଗନ୍ନାଥ"></p><div class="hero-buttons"><a href="mailto:${myEmail}" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" /></svg><span data-lang-en="Mail Me" data-lang-or="ମେଲ୍ କରନ୍ତୁ"></span></a><button id="copy-email-btn" class="btn btn-secondary"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75" /></svg><span data-lang-en="Copy Email" data-lang-or="ଇମେଲ୍ କପି କରନ୍ତୁ"></span></button></div></div><div class="hero-avatar"><img src="https://imsbg.github.io/images/sandeep-biswal-g/sandeep.jpg" alt="Sandeep Biswal G"></div></div> </section>
-                <section class="section"> <div class="section-header"><span class="section-dot"></span><h2 class="section-title" data-lang-en="Projects" data-lang-or="ପ୍ରୋଜେକ୍ଟସ୍"></h2><div id="view-all-projects-btn" class="view-all-link"><span data-lang-en="View All" data-lang-or="ସବୁ ଦେଖନ୍ତୁ"></span> &rarr;</div></div><div class="project-list">${homeProjectsHTML}</div> </section>
-                <section class="section cta-section"><h2 data-lang-en="Let's work together." data-lang-or="ଆସନ୍ତୁ ଏକାଠି କାମ କରିବା"></h2><p data-lang-en="lets create something for odisha in odia language." data-lang-or="ଆସନ୍ତୁ ଓଡ଼ିଶା ପାଇଁ ଓଡ଼ିଆ ଭାଷାରେ କିଛି ତିଆରି କରିବା"></p><div class="cta-buttons"><a href="mailto:${myEmail}" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" /></svg><span data-lang-en="Mail Me" data-lang-or="ମେଲ୍ କରନ୍ତୁ"></span></a><button id="copy-email-btn-2" class="btn btn-secondary"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75" /></svg><span data-lang-en="Copy Email" data-lang-or="ଇମେଲ୍ କପି କରନ୍ତୁ"></span></button></div></section>
-                <section class="section"><div class="section-header" style="justify-content:center; margin-bottom: 0;"><span class="section-dot"></span><h2 class="section-title" data-lang-en="Follow Me" data-lang-or="ମୋତେ ଅନୁସରଣ କରନ୍ତୁ"></h2></div> ${socialLinksHTML} </section>`;
-
-        // Profile Page
-        document.getElementById("profile-content").innerHTML = `<section class="section profile-page">
-            <img src="https://imsbg.github.io/images/sandeep-biswal-g/sandeep.jpg" alt="Sandeep Biswal G" class="profile-avatar">
-            <h2 data-lang-en="About Me" data-lang-or="ମୋ ବିଷୟରେ"></h2>
-            <p class="profile-bio" data-lang-en="Jay Jagannatha! I'm Sandeep Biswal, a guy from Odisha. I really love technology. Exploring new places, experiencing nature, and learning about the digital world are my passions. My one and only goal is to bring our Odia language forward in technology. I want our people to be able to use all digital things easily in their own language.<br><i>Glory to thee, Mother Utkala</i>" data-lang-or="ଜୟ ଜଗନ୍ନାଥ, ମୁଁ, <b>ସନ୍ଦୀପ୍ ବିଶ୍ଵାଳ</b> ଆଉ ମୁଁ ଓଡ଼ିଶାର ପିଲା । ଟେକ୍ନୋଲୋଜି ମୋତେ ଭାରି ଭଲ ଲାଗେ । ନୂଆ ନୂଆ ଜାଗା ବୁଲିବା, ପ୍ରକୃତିକୁ ଦେଖିବା ଆଉ ଡିଜିଟାଲ ଦୁନିଆ ବିଷୟରେ ଜାଣିବା ମୋର ସଉକ । ମୋର ଗୋଟିଏ ହିଁ ଲକ୍ଷ୍ୟ, ଟେକ୍ନୋଲୋଜିରେ ଆମ ଓଡ଼ିଆ ଭାଷାକୁ ଆଗକୁ ନେବା । ମୁଁ ଚାହେଁ ଯେମିତି ଆମ ଲୋକମାନେ ସବୁ ଡିଜିଟାଲ୍ ଜିନିଷକୁ ସହଜରେ ନିଜ ଭାଷାରେ ବ୍ୟବହାର କରନ୍ତୁ । <br><i>ବନ୍ଦେ ଉତ୍କଳ ଜନନୀ</i>"></p>
-            <h3 data-lang-en="Interests" data-lang-or="ଆଗ୍ରହ"></h3>
-            <div class="interest-tags"><span class="interest-tag">Photography</span><span class="interest-tag">Traveling</span><span class="interest-tag">Tech Gadgets</span></div>
-            <h3 data-lang-en="Follow Me on Social Media" data-lang-or="ସୋସିଆଲ ମିଡିଆରେ ମୋତେ ଅନୁସରଣ କରନ୍ତୁ"></h3>
-            ${socialLinksHTML}
-            <!-- INSTAGRAM EMBED SECTION -->
-            <div style="text-align: left; margin-top: 40px; padding-top: 40px; border-top: 1px solid var(--border-color);">
-                <div class="section-header" style="margin-bottom: 15px;">
-                    <span class="section-dot"></span>
-                    <h2 class="section-title" data-lang-en="Lifestyle" data-lang-or="ଜୀବନଶୈଳୀ"></h2>
+          <div class="home-bento-top">
+            <section class="bento-card hero-bento">
+              <div>
+                <div class="hero-top-meta">
+                  <div class="location-chip">
+                    <span class="live-dot"></span>
+                    <span data-lang-en="Dhenkanal, Odisha" data-lang-or="ଢେଙ୍କାନାଳ, ଓଡ଼ିଶା"></span>
+                  </div>
+                  <div class="greeting-chip" data-lang-en="Jay Jagannath" data-lang-or="ଜୟ ଜଗନ୍ନାଥ"></div>
                 </div>
-                <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/sandeepbiswalg/" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px auto; max-width:540px; min-width:326px; padding:0; width:99.375%;"></blockquote>
+                <h1 data-lang-en="I'm Sandeep Biswal G" data-lang-or="ମୁଁ ସନ୍ଦୀପ୍ ବିଶ୍ଵାଳ ଜି"></h1>
+              </div>
+
+              <div class="hero-actions">
+                <a href="mailto:${myEmail}" class="btn btn-primary">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" /></svg>
+                  <span data-lang-en="Mail Me" data-lang-or="ମେଲ୍ କରନ୍ତୁ"></span>
+                </a>
+                <button id="copy-email-btn" class="btn btn-secondary">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75" /></svg>
+                  <span data-lang-en="Copy Email" data-lang-or="ଇମେଲ୍ କପି କରନ୍ତୁ"></span>
+                </button>
+              </div>
+            </section>
+
+            <div class="hero-right-stack">
+              <div class="bento-card portrait-bento">
+                <img src="https://imsbg.github.io/images/sandeep-biswal-g/sandeep.jpg" alt="Sandeep Biswal G">
+                <div class="portrait-overlay">
+                  <span class="portrait-caption">Sandeep Biswal G</span>
+                  <span class="portrait-tag" data-lang-en="Dhenkanal, Odisha" data-lang-or="ଢେଙ୍କାନାଳ, ଓଡ଼ିଶା"></span>
+                </div>
+              </div>
+
+              <div class="bento-card social-bento">
+                <div class="social-bento-label" data-lang-en="Follow Me" data-lang-or="ମୋତେ ଅନୁସରଣ କରନ୍ତୁ"></div>
+                ${socialGridHTML}
+              </div>
             </div>
-        </section>`;
+          </div>
 
-        // Projects Page
+          <section class="showcase-block">
+            <div class="block-header">
+              <div class="block-title-wrap">
+                <h2 class="block-title" data-lang-en="Projects" data-lang-or="ପ୍ରୋଜେକ୍ଟସ୍"></h2>
+                <span class="block-count">${projectsData.length}</span>
+              </div>
+              <button id="view-all-projects-btn" class="view-all-link">
+                <span data-lang-en="View All" data-lang-or="ସବୁ ଦେଖନ୍ତୁ"></span> &rarr;
+              </button>
+            </div>
+            <div class="home-projects-grid">${homeProjectsHTML}</div>
+          </section>
+
+          <section class="bento-card cta-bento">
+            <div class="cta-copy">
+              <h2 data-lang-en="Let's work together." data-lang-or="ଆସନ୍ତୁ ଏକାଠି କାମ କରିବା"></h2>
+              <p data-lang-en="lets create something for odisha in odia language." data-lang-or="ଆସନ୍ତୁ ଓଡ଼ିଶା ପାଇଁ ଓଡ଼ିଆ ଭାଷାରେ କିଛି ତିଆରି କରିବା"></p>
+            </div>
+            <div class="cta-buttons">
+              <a href="mailto:${myEmail}" class="btn btn-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" /></svg>
+                <span data-lang-en="Mail Me" data-lang-or="ମେଲ୍ କରନ୍ତୁ"></span>
+              </a>
+              <button id="copy-email-btn-2" class="btn btn-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75" /></svg>
+                <span data-lang-en="Copy Email" data-lang-or="ଇମେଲ୍ କପି କରନ୍ତୁ"></span>
+              </button>
+            </div>
+          </section>`;
+
+        // PROFILE PAGE (2-Column Editorial Split)
+        document.getElementById("profile-content").innerHTML = `
+          <div class="about-grid">
+            <aside class="about-sidebar">
+              <div class="bento-card about-photo-card">
+                <img src="https://imsbg.github.io/images/sandeep-biswal-g/sandeep.jpg" alt="Sandeep Biswal G">
+              </div>
+
+              <div class="bento-card about-side-card">
+                <h3 data-lang-en="Interests" data-lang-or="ଆଗ୍ରହ"></h3>
+                <div class="interest-tags">
+                  <span class="interest-tag">Photography</span>
+                  <span class="interest-tag">Traveling</span>
+                  <span class="interest-tag">Tech Gadgets</span>
+                </div>
+              </div>
+
+              <div class="bento-card about-side-card">
+                <h3 data-lang-en="Follow Me on Social Media" data-lang-or="ସୋସିଆଲ ମିଡିଆରେ ମୋତେ ଅନୁସରଣ କରନ୍ତୁ"></h3>
+                ${socialGridHTML}
+              </div>
+            </aside>
+
+            <div class="about-main">
+              <section class="bento-card about-story-card">
+                <h2 data-lang-en="About Me" data-lang-or="ମୋ ବିଷୟରେ"></h2>
+                <p class="profile-bio" data-lang-en="Jay Jagannatha! I'm Sandeep Biswal, a guy from Odisha. I really love technology. Exploring new places, experiencing nature, and learning about the digital world are my passions. My one and only goal is to bring our Odia language forward in technology. I want our people to be able to use all digital things easily in their own language.<br><i>Glory to thee, Mother Utkala</i>" data-lang-or="ଜୟ ଜଗନ୍ନାଥ, ମୁଁ, <b>ସନ୍ଦୀପ୍ ବିଶ୍ଵାଳ</b> ଆଉ ମୁଁ ଓଡ଼ିଶାର ପିଲା । ଟେକ୍ନୋଲୋଜି ମୋତେ ଭାରି ଭଲ ଲାଗେ । ନୂଆ ନୂଆ ଜାଗା ବୁଲିବା, ପ୍ରକୃତିକୁ ଦେଖିବା ଆଉ ଡିଜିଟାଲ ଦୁନିଆ ବିଷୟରେ ଜାଣିବା ମୋର ସଉକ । ମୋର ଗୋଟିଏ ହିଁ ଲକ୍ଷ୍ୟ, ଟେକ୍ନୋଲୋଜିରେ ଆମ ଓଡ଼ିଆ ଭାଷାକୁ ଆଗକୁ ନେବା । ମୁଁ ଚାହେଁ ଯେମିତି ଆମ ଲୋକମାନେ ସବୁ ଡିଜିଟାଲ୍ ଜିନିଷକୁ ସହଜରେ ନିଜ ଭାଷାରେ ବ୍ୟବହାର କରନ୍ତୁ । <br><i>ବନ୍ଦେ ଉତ୍କଳ ଜନନୀ</i>"></p>
+              </section>
+
+              <section class="bento-card lifestyle-card">
+                <div class="block-title-wrap">
+                  <h2 class="block-title" data-lang-en="Lifestyle" data-lang-or="ଜୀବନଶୈଳୀ"></h2>
+                </div>
+                <div class="instagram-frame">
+                  <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/sandeepbiswalg/" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:12px; box-shadow:none; margin: 0 auto; max-width:540px; min-width:260px; padding:0; width:100%;"></blockquote>
+                </div>
+              </section>
+            </div>
+          </div>`;
+
+        // PROJECTS PAGE (3-Column Showcase Grid)
         document.getElementById("projects-content").innerHTML = `
-                <section class="section">
-                    <div class="projects-page-header">
-                         <h2 data-lang-en="My Works" data-lang-or="ମୋର କାର୍ଯ୍ୟଗୁଡ଼ିକ"></h2>
-                         <p data-lang-en="" data-lang-or=""></p>
-                    </div>
-                    <div class="projects-grid">${allProjectsHTML}</div>
-                </section>`;
+          <div class="bento-card projects-hero-banner">
+            <div>
+              <h2 data-lang-en="My Works" data-lang-or="ମୋର କାର୍ଯ୍ୟଗୁଡ଼ିକ"></h2>
+              <p data-lang-en="" data-lang-or=""></p>
+            </div>
+            <span class="block-count">${projectsData.length}</span>
+          </div>
+          <div class="all-projects-grid">${allProjectsHTML}</div>`;
 
-        // Menu Modal
-        document.getElementById("menu-overlay").innerHTML = `<button id="close-menu-btn" class="close-modal-btn" title="Close Menu">&times;</button><ul class="menu-links"><li><a href="https://imsbg.github.io/?od#ଘର" data-lang-en="Home" data-lang-or="ହୋମ୍"></a></li><li><a href="https://imsbg.github.io/?od#about" data-lang-en="About" data-lang-or="ମୋ ବିଷୟରେ"></a></li><li><a href="https://play.google.com/store/apps/details?id=in.sandeep.odiabhasa" data-lang-en="Odia Bhasa ଆପ୍" data-lang-or="ଓଡ଼ିଆ ଭାଷା ଆପ୍"></a></li><li><a href="https://www.instagram.com/sandeepbiswalg" data-lang-en="Follow Me" data-lang-or="ମୋତେ ଅନୁସରଣ କରନ୍ତୁ
-"></a></li><li><a href="mailto:message.sbg@gmail.com" data-lang-en="Contact" data-lang-or="ଯୋଗାଯୋଗ"></a></li></ul>`;
+        // SLIDE-OVER MENU DRAWER
+        document.getElementById("menu-overlay").innerHTML = `
+          <div class="menu-drawer">
+            <div class="drawer-header">
+              <span class="drawer-brand">SANDEEP BISWAL G</span>
+              <button id="close-menu-btn" class="close-modal-btn" title="Close Menu" aria-label="Close Menu">&times;</button>
+            </div>
+            <ul class="menu-links">
+              <li><a href="https://imsbg.github.io/?od#ଘର"><span class="menu-num">01</span><span data-lang-en="Home" data-lang-or="ହୋମ୍"></span></a></li>
+              <li><a href="https://imsbg.github.io/?od#about"><span class="menu-num">02</span><span data-lang-en="About" data-lang-or="ମୋ ବିଷୟରେ"></span></a></li>
+              <li><a href="https://play.google.com/store/apps/details?id=in.sandeep.odiabhasa"><span class="menu-num">03</span><span data-lang-en="Odia Bhasa ଆପ୍" data-lang-or="ଓଡ଼ିଆ ଭାଷା ଆପ୍"></span></a></li>
+              <li><a href="https://www.instagram.com/sandeepbiswalg"><span class="menu-num">04</span><span data-lang-en="Follow Me" data-lang-or="ମୋତେ ଅନୁସରଣ କରନ୍ତୁ
+"></span></a></li>
+              <li><a href="mailto:message.sbg@gmail.com"><span class="menu-num">05</span><span data-lang-en="Contact" data-lang-or="ଯୋଗାଯୋଗ"></span></a></li>
+            </ul>
+            <div class="drawer-footer">message.sbg@gmail.com</div>
+          </div>`;
       }
 
       // --- SCRIPT INITIALIZATION ---
       document.addEventListener("DOMContentLoaded", () => {
         populateContent();
 
-        // --- DOM ELEMENT REFERENCES ---
+        // --- DOM REFERENCES ---
+        const brandHomeLink = document.getElementById("brand-home-link");
         const homeNavBtn = document.getElementById("home-nav-btn");
         const profileNavBtn = document.getElementById("profile-btn");
         const projectsNavBtn = document.getElementById("projects-nav-btn");
@@ -922,131 +1819,219 @@
         const closeMenuBtn = document.getElementById("close-menu-btn");
         const viewAllProjectsBtn = document.getElementById("view-all-projects-btn");
         const langSwitcher = document.getElementById("language-switcher");
-        const shareBtn = document.getElementById('floating-share-btn');
+        const shareBtn = document.getElementById("floating-share-btn");
+        const themeToggleBtn = document.getElementById("theme-toggle-btn");
+        const themeIconSun = document.getElementById("theme-icon-sun");
+        const themeIconMoon = document.getElementById("theme-icon-moon");
+        const toast = document.getElementById("toast");
+        const toastMessage = document.getElementById("toast-message");
 
         const allPages = [homeContent, profileContent, projectsContent];
         const allNavBtns = [homeNavBtn, profileNavBtn, projectsNavBtn];
-        let currentLanguage = "or"; 
+        let currentLanguage = "or";
+        let toastTimer = null;
+
+        // --- INTERACTIVE MOUSE SPOTLIGHT ON BENTO CARDS ---
+        const bindSpotlights = () => {
+          document.querySelectorAll(".bento-card").forEach((card) => {
+            card.addEventListener("pointermove", (e) => {
+              if (e.pointerType !== "mouse") return;
+              const rect = card.getBoundingClientRect();
+              card.style.setProperty("--mx", `${e.clientX - rect.left}px`);
+              card.style.setProperty("--my", `${e.clientY - rect.top}px`);
+            });
+          });
+        };
+        bindSpotlights();
+
+        // --- THEME TOGGLE (Dark Obsidian Default / Light Ivory Optional) ---
+        const applyTheme = (theme) => {
+          if (theme === "light") {
+            document.documentElement.setAttribute("data-theme", "light");
+            themeIconSun.style.display = "none";
+            themeIconMoon.style.display = "block";
+          } else {
+            document.documentElement.removeAttribute("data-theme");
+            themeIconSun.style.display = "block";
+            themeIconMoon.style.display = "none";
+          }
+          try {
+            localStorage.setItem("sbg-theme", theme);
+          } catch (_) {}
+        };
+
+        try {
+          const savedTheme = localStorage.getItem("sbg-theme");
+          if (savedTheme === "light") applyTheme("light");
+        } catch (_) {}
+
+        themeToggleBtn.addEventListener("click", () => {
+          const isLight = document.documentElement.getAttribute("data-theme") === "light";
+          applyTheme(isLight ? "dark" : "light");
+        });
+
+        // --- TOAST HELPER ---
+        const showToast = (msg) => {
+          toastMessage.textContent = msg;
+          toast.classList.add("show");
+          clearTimeout(toastTimer);
+          toastTimer = setTimeout(() => {
+            toast.classList.remove("show");
+          }, 2400);
+        };
 
         // --- LANGUAGE HANDLING ---
         const setLanguage = (lang, isInitialLoad = false) => {
-            currentLanguage = lang;
-            document.documentElement.lang = currentLanguage;
-            document.querySelectorAll("[data-lang-en]").forEach((el) => {
-                const text = currentLanguage === "en" ? el.dataset.langEn : el.dataset.langOr;
-                if(text) el.innerHTML = text;
-            });
-            langSwitcher.innerText = currentLanguage === "en" ? langSwitcher.dataset.langEn : langSwitcher.dataset.langOr;
-            
-            if (!isInitialLoad) {
-                const url = new URL(window.location);
-                url.search = '?' + (lang === 'en' ? 'en' : 'od');
-                window.history.replaceState({ lang }, '', url.href);
-            }
+          currentLanguage = lang;
+          document.documentElement.lang = currentLanguage;
+          document.querySelectorAll("[data-lang-en]").forEach((el) => {
+            const text = currentLanguage === "en" ? el.dataset.langEn : el.dataset.langOr;
+            if (text) el.innerHTML = text;
+          });
+          langSwitcher.innerText =
+            currentLanguage === "en" ? langSwitcher.dataset.langEn : langSwitcher.dataset.langOr;
 
-            // Re-process Instagram embed if it exists, as its container might re-render
-            if (window.instgrm) {
-                window.instgrm.Embeds.process();
-            }
+          if (!isInitialLoad) {
+            const url = new URL(window.location);
+            url.search = "?" + (lang === "en" ? "en" : "od");
+            window.history.replaceState({ lang }, "", url.href);
+          }
+
+          if (window.instgrm) {
+            window.instgrm.Embeds.process();
+          }
         };
 
         const checkUrlForLanguage = () => {
-            const search = window.location.search;
-            if (search === '?en') {
-                setLanguage('en', true);
-            } else {
-                setLanguage('or', true); // Default to Odia
-            }
+          const search = window.location.search;
+          if (search === "?en") {
+            setLanguage("en", true);
+          } else {
+            setLanguage("or", true);
+          }
         };
-        
+
         // --- PAGE NAVIGATION ---
         const setActivePage = (activePage, isInitialLoad = false) => {
           allPages.forEach((page) => page.classList.remove("active"));
           activePage.classList.add("active");
-          
-          if(!isInitialLoad) window.scrollTo(0, 0);
+
+          if (!isInitialLoad) window.scrollTo({ top: 0, behavior: "smooth" });
 
           const activeIndex = allPages.indexOf(activePage);
-          allNavBtns.forEach(btn => btn.classList.remove('active-nav'));
+          allNavBtns.forEach((btn) => btn.classList.remove("active-nav"));
           if (activeIndex !== -1) {
-            allNavBtns[activeIndex].classList.add('active-nav');
+            allNavBtns[activeIndex].classList.add("active-nav");
           }
-          
+
           if (!isInitialLoad) {
-                let newHash = '#ଘର';
-                if (activePage.id === 'profile-content') newHash = '#about';
-                if (activePage.id === 'projects-content') newHash = '#projects';
-                
-                if (window.location.hash !== newHash) {
-                   window.history.pushState({ page: newHash }, '', newHash);
-                }
+            let newHash = "#ଘର";
+            if (activePage.id === "profile-content") newHash = "#about";
+            if (activePage.id === "projects-content") newHash = "#projects";
+
+            if (window.location.hash !== newHash) {
+              window.history.pushState({ page: newHash }, "", newHash);
             }
+          }
+
+          if (activePage.id === "profile-content" && window.instgrm) {
+            window.instgrm.Embeds.process();
+          }
         };
 
         const checkUrlForHash = () => {
-            const hash = window.location.hash;
-            switch (hash) {
-                case '#about':
-                    setActivePage(profileContent, true);
-                    break;
-                case '#projects':
-                    setActivePage(projectsContent, true);
-                    break;
-                case '#ଘର':
-                default:
-                    setActivePage(homeContent, true);
-                    break;
-            }
+          const hash = window.location.hash;
+          switch (hash) {
+            case "#about":
+              setActivePage(profileContent, true);
+              break;
+            case "#projects":
+              setActivePage(projectsContent, true);
+              break;
+            case "#ଘର":
+            default:
+              setActivePage(homeContent, true);
+              break;
+          }
         };
-        
-        homeNavBtn.classList.add('active-nav'); // Set initial active state
 
         // --- EVENT LISTENERS ---
-        homeNavBtn.addEventListener("click", (e) => { e.preventDefault(); setActivePage(homeContent); });
+        brandHomeLink.addEventListener("click", (e) => {
+          e.preventDefault();
+          setActivePage(homeContent);
+        });
+        homeNavBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          setActivePage(homeContent);
+        });
         profileNavBtn.addEventListener("click", () => setActivePage(profileContent));
         projectsNavBtn.addEventListener("click", () => setActivePage(projectsContent));
         viewAllProjectsBtn.addEventListener("click", () => projectsNavBtn.click());
-        menuBtn.addEventListener("click", () => menuOverlay.classList.add("show"));
-        closeMenuBtn.addEventListener("click", () => menuOverlay.classList.remove("show"));
-        langSwitcher.addEventListener("click", () => setLanguage(currentLanguage === 'or' ? 'en' : 'or'));
 
-        if (shareBtn) {
-            shareBtn.addEventListener('click', async () => {
-                const shareData = {
-                    title: document.title,
-                    text: "Check out Sandeep Biswal G's portfolio!",
-                    url: window.location.href,
-                };
-                try {
-                    if (navigator.share) {
-                        await navigator.share(shareData);
-                    } else {
-                        await navigator.clipboard.writeText(shareData.url);
-                        alert('Link copied to clipboard!');
-                    }
-                } catch (err) {
-                    console.error('Share failed:', err);
-                }
-            });
-        }
-        
-        window.addEventListener('popstate', (event) => {
-            checkUrlForHash();
+        const closeMenu = () => menuOverlay.classList.remove("show");
+        menuBtn.addEventListener("click", () => menuOverlay.classList.add("show"));
+        closeMenuBtn.addEventListener("click", closeMenu);
+        menuOverlay.addEventListener("click", (e) => {
+          if (e.target === menuOverlay) closeMenu();
+        });
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && menuOverlay.classList.contains("show")) closeMenu();
         });
 
+        langSwitcher.addEventListener("click", () =>
+          setLanguage(currentLanguage === "or" ? "en" : "or")
+        );
+
+        if (shareBtn) {
+          shareBtn.addEventListener("click", async () => {
+            const shareData = {
+              title: document.title,
+              text: "Check out Sandeep Biswal G's portfolio!",
+              url: window.location.href,
+            };
+            try {
+              if (navigator.share) {
+                await navigator.share(shareData);
+              } else {
+                await navigator.clipboard.writeText(shareData.url);
+                showToast(
+                  currentLanguage === "en" ? "Link copied to clipboard!" : "ଲିଙ୍କ୍ କପି ହେଲା!"
+                );
+              }
+            } catch (err) {
+              console.error("Share failed:", err);
+            }
+          });
+        }
+
+        window.addEventListener("popstate", () => {
+          checkUrlForHash();
+        });
 
         const copyEmail = (buttonId) => {
           const copyBtn = document.getElementById(buttonId);
-          const originalText = copyBtn.querySelector("span").dataset[currentLanguage === 'en' ? 'langEn' : 'langOr'];
-          navigator.clipboard.writeText(myEmail).then(() => {
-              copyBtn.querySelector("span").innerText = currentLanguage === "en" ? "Copied!" : "କପି ହେଲା!";
+          const span = copyBtn.querySelector("span");
+          const originalText =
+            span.dataset[currentLanguage === "en" ? "langEn" : "langOr"];
+          navigator.clipboard
+            .writeText(myEmail)
+            .then(() => {
+              const copiedLabel = currentLanguage === "en" ? "Copied!" : "କପି ହେଲା!";
+              span.innerText = copiedLabel;
+              showToast(copiedLabel);
               setTimeout(() => {
-                copyBtn.querySelector("span").innerText = originalText;
+                span.innerText = originalText;
               }, 2000);
-            }).catch((err) => console.error("Failed to copy email: ", err));
+            })
+            .catch((err) => console.error("Failed to copy email: ", err));
         };
-        document.getElementById("copy-email-btn").addEventListener("click", () => copyEmail("copy-email-btn"));
-        document.getElementById("copy-email-btn-2").addEventListener("click", () => copyEmail("copy-email-btn-2"));
+
+        document
+          .getElementById("copy-email-btn")
+          .addEventListener("click", () => copyEmail("copy-email-btn"));
+        document
+          .getElementById("copy-email-btn-2")
+          .addEventListener("click", () => copyEmail("copy-email-btn-2"));
 
         // --- INITIALIZE ---
         checkUrlForLanguage();
